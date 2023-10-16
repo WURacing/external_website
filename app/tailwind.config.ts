@@ -17,6 +17,6 @@ export default {
     require('@tailwindcss/forms'),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),
-    require('tailwindcss-children'),
+    require('tailwind-children'),
   ],
 } satisfies Config

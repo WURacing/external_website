@@ -1,0 +1,38 @@
+// Example store file. Copy this file to a store file and modify it to suit your needs.
+
+import { defineStore } from 'pinia'
+
+export const useExampleStore = defineStore('example', () => {
+  /*
+   * State (reactive variables)
+   */
+
+  /*
+   * Getters (computed properties)
+   */
+
+  /*
+   * Actions (functions that mutate the state)
+   */
+
+  /*
+   * Watchers (watched variables)
+   */
+
+  /*
+   * Methods (functions that don't mutate the state)
+   */
+
+  /*
+   * Hooks (called when the store is instantiated)
+   */
+  
+  return {
+    // State
+    // Getters
+    // Actions
+    // Watchers
+    // Methods
+    // Hooks
+  }
+})

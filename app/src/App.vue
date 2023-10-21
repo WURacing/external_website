@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-stone-900 text-gray-100 flex flex-col min-h-full h-screen">
+  <div class="bg-stone-900 text-stone-100 flex flex-col min-h-full h-screen">
     <!-- Universal Header -->
     <UniversalHeader />
     

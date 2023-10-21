@@ -20,9 +20,9 @@
         Announcement
       -->
       <div class="hidden sm:mb-8 sm:flex sm:justify-center">
-        <div class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-gray-100/10 hover:ring-gray-100/20">
+        <div class="relative rounded-full px-3 py-1 text-sm leading-6 text-stone-400 ring-1 ring-stone-100/10 hover:ring-stone-100/20">
           <slot name="announcement" />
-          <a :href="$props.announcementLink" class="font-semibold text-gray-100">
+          <a :href="$props.announcementLink" class="font-semibold text-stone-100">
             <span class="absolute inset-0" aria-hidden="true" />
             <slot name="announcement-link" />
             <span aria-hidden="true">
@@ -39,14 +39,14 @@
         <!--
           Heading text
         -->
-        <h1 class="text-4xl font-bold tracking-tight text-gray-100 sm:text-6xl">
+        <h1 class="text-4xl font-bold tracking-tight text-stone-100 sm:text-6xl">
           <slot name="heading" />
         </h1>
 
         <!--
           Description text
         -->
-        <p class="mt-6 text-lg leading-8 text-gray-300">
+        <p class="mt-6 text-lg leading-8 text-stone-300">
           <slot name="description" />
         </p>
 
@@ -54,11 +54,11 @@
           CTA
         -->
         <div class="mt-10 flex items-center justify-center gap-x-6">
-          <a :href="$props.ctaButtonLink" class="rounded-md bg-red-500 px-3.5 py-2.5 text-sm font-semibold text-gray-100 shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-400">
+          <a :href="$props.ctaButtonLink" class="rounded-md bg-red-500 px-3.5 py-2.5 text-sm font-semibold text-stone-100 shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-400">
             <slot name="cta-button" />
           </a>
 
-          <a :href="$props.ctaLink" class="text-sm font-semibold leading-6 text-gray-100">
+          <a :href="$props.ctaLink" class="text-sm font-semibold leading-6 text-stone-100">
             <slot name="cta-link" />
             <span aria-hidden="true">
               &rarr;

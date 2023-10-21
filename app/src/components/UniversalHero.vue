@@ -46,7 +46,8 @@
         <!--
           Description text
         -->
-        <p class="mt-6 text-lg leading-8 text-stone-300">
+        <!-- Responsive text sizing -->
+        <p class="mt-6 text-sm leading-8 text-stone-300 sm:text-base md:text-lg lg:text-xl">
           <slot name="description" />
         </p>
 

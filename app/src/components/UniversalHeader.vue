@@ -61,13 +61,13 @@
             </span>
             <RacingIcon />
           </a>
-          <button type="button" class="-m-2.5 rounded-md p-2.5 text-stone-700" @click="mobileMenuOpen = false">
+          <button type="button" class="-m-2.5 rounded-md p-2.5 text-stone-400" @click="mobileMenuOpen = false">
             <span class="sr-only">Close menu</span>
             <XMarkIcon class="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
         <div class="mt-6 flow-root">
-          <div class="-my-6 divide-y divide-stone-500/10">
+          <div class="-my-6 divide-y divide-stone-500/100">
             <div class="space-y-2 py-6">
               <RouterLink to="/" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-stone-100 hover:bg-stone-50">Home</RouterLink>
               <RouterLink v-for="item in navigation" :key="item.name" :to="item.to" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-stone-100 hover:bg-stone-50">{{ item.name }}</RouterLink>
@@ -92,7 +92,7 @@ import { Bars3Icon, MinusSmallIcon, PlusSmallIcon, XMarkIcon, ChevronDownIcon } 
 
 const route = useRoute();
 const current = computed(() =>route.path);
-let mobileMenuOpen = false;
+const mobileMenuOpen = ref(false);
 
 const isDropdown = (isDropdown: boolean) => computed(() => navigation.filter(item => item.isDropdown === isDropdown));
 

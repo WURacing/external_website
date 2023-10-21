@@ -3,7 +3,7 @@
     bgsrc="../assets/hero-bg.jpg"
     announcement-link="https://www.sae.org/attend/student-events/formula-sae-michigan"
     cta-button-link="/about"
-    cta-link="/about"
+    cta-link="/team"
   >
     <template #announcement>
       <b>{{ countdown }}</b> until Formula SAE Michigan 2024!

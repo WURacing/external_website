@@ -15,7 +15,7 @@
     <!--
       Content
     -->
-    <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+    <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 px-4 sm:px-6 lg:px-8">
       <!-- 
         Announcement
       -->

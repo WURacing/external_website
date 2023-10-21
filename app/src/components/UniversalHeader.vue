@@ -23,7 +23,28 @@
         </button>
       </div>
       <div class="hidden lg:flex lg:gap-x-12">
-        <RouterLink v-for="item in navigation" :key="item.name" :to="item.to" class="text-sm font-semibold leading-6 text-stone-100">{{ item.name }}</RouterLink>
+        <RouterLink to="/" class="text-sm font-semibold leading-6 text-stone-100 hover:text-red-400">
+          Home
+        </RouterLink>
+        <Popover class="relative">
+          <PopoverButton class="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-stone-100 hover:text-red-400 rounded-md focus-visible:outline-0 focus-visible:ring-0">
+            <span>Learn More</span>
+            <ChevronDownIcon class="h-5 w-5" aria-hidden="true" />
+          </PopoverButton>
+
+          <transition enter-active-class="transition ease-out duration-200" enter-from-class="opacity-0 translate-y-1" enter-to-class="opacity-100 translate-y-0" leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 translate-y-1">
+            <PopoverPanel class="absolute left-1/2 z-10 mt-5 flex w-screen max-w-min -translate-x-1/2 px-4">
+              <div class="w-56 shrink rounded-xl bg-stone-100 p-4 text-sm font-semibold leading-6 text-stone-900 shadow-lg ring-1 ring-stone-900/5">
+                <RouterLink v-for="item in isDropdown(true).value" :key="item.name" :to="item.to" class="block p-2 hover:text-red-600">
+                  {{ item.name }}
+                </RouterLink>
+              </div>
+            </PopoverPanel>
+          </transition>
+        </Popover>
+        <RouterLink v-for="item in isDropdown(false).value" :key="item.name" :to="item.to" class="text-sm font-semibold leading-6 text-stone-100 hover:text-red-400">
+          {{ item.name }}
+        </RouterLink>
       </div>
     </nav>
 
@@ -48,27 +69,13 @@
         <div class="mt-6 flow-root">
           <div class="-my-6 divide-y divide-stone-500/10">
             <div class="space-y-2 py-6">
-              <Popover class="relative">
-                <PopoverButton class="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-stone-900">
-                  <span>Learn More</span>
-                  <ChevronDownIcon class="h-5 w-5" aria-hidden="true" />
-                </PopoverButton>
-
-                <transition enter-active-class="transition ease-out duration-200" enter-from-class="opacity-0 translate-y-1" enter-to-class="opacity-100 translate-y-0" leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 translate-y-1">
-                  <PopoverPanel class="absolute left-1/2 z-10 mt-5 flex w-screen max-w-min -translate-x-1/2 px-4">
-                    <div class="w-56 shrink rounded-xl bg-white p-4 text-sm font-semibold leading-6 text-stone-900 shadow-lg ring-1 ring-stone-900/5">
-                      <a v-for="item in learnMore" :key="item.name" :href="item.href" class="block p-2 hover:text-red-600">{{ item.name }}</a>
-                    </div>
-                  </PopoverPanel>
-                </transition>
-              </Popover>              
+              <RouterLink to="/" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-stone-100 hover:bg-stone-50">Home</RouterLink>
               <RouterLink v-for="item in navigation" :key="item.name" :to="item.to" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-stone-100 hover:bg-stone-50">{{ item.name }}</RouterLink>
             </div>
           </div>
         </div>
       </DialogPanel>
     </Dialog>
-
   </header>
 </template>
 
@@ -81,41 +88,44 @@ import {
   Dialog, DialogPanel, Disclosure, DisclosureButton, DisclosurePanel,
   Popover, PopoverButton, PopoverPanel 
 } from '@headlessui/vue'
-import { Bars3Icon, MinusSmallIcon, PlusSmallIcon, XMarkIcon } from '@heroicons/vue/24/outline'
+import { Bars3Icon, MinusSmallIcon, PlusSmallIcon, XMarkIcon, ChevronDownIcon } from '@heroicons/vue/24/outline'
 
 const route = useRoute();
 const current = computed(() =>route.path);
+let mobileMenuOpen = false;
+
+const isDropdown = (isDropdown: boolean) => computed(() => navigation.filter(item => item.isDropdown === isDropdown));
 
 const navigation = [
   {
-    name: 'Home',
-    to: '/',
-  },
-  {
     name: 'About',
     to: '/about',
+    isDropdown: true,
   },
   {
     name: 'Gallery',
     to: '/gallery',
+    isDropdown: true,
   },
   {
     name: 'History',
     to: '/history',
+    isDropdown: true,
   },
   {
     name: 'Team',
     to: '/team',
+    isDropdown: true,
   },
   {
     name: 'Sponsors',
     to: '/sponsors',
+    isDropdown: false,
   },
   {
     name: 'Contact',
     to: '/contact',
+    isDropdown: false,
   },
 ]
-
-let mobileMenuOpen = false;
 </script>

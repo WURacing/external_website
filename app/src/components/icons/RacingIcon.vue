@@ -1,5 +1,5 @@
 <template>
-  <img src="../../assets/WashURacingRed.png" alt="Racing Icon" class="block h-24 w-auto" />
+  <img src="../../assets/WashURacingRed.png" alt="Racing Icon" class="block h-16 w-auto" />
 </template>
 
 <script setup lang="ts"></script>

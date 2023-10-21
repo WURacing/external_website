@@ -1,6 +1,6 @@
 <template>
   <!-- Footer -->
-  <footer class="bg-gray-900 border-t border-gray-600" aria-labelledby="footer-heading">
+  <footer class="bg-stone-900 border-t border-gray-600" aria-labelledby="footer-heading">
     <h2 id="footer-heading" class="sr-only">Footer</h2>
     <div class="mx-auto px-6 py-16 sm:py-24 lg:px-8 lg:py-32">
       <!-- 

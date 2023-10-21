@@ -1,10 +1,10 @@
 <template>
-  <div class="bg-gray-900 text-gray-100 flex flex-col min-h-full h-screen">
+  <div class="bg-stone-900 text-gray-100 flex flex-col min-h-full h-screen">
     <!-- Universal Header -->
     <UniversalHeader />
     
     <!-- Main Content -->
-    <main class="w-full flex-grow">
+    <main class="w-full flex-grow min-h-screen">
       <router-view />
     </main>
     

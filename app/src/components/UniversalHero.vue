@@ -6,7 +6,7 @@
     <img src="../assets/herobg.jpg" alt="WashU FSAE Car"
       class="absolute inset-0 -z-10 h-full w-full object-cover object-center opacity-40 filter" :style="{
         transform: `translateY(${scrollY / 10}px) scale(${1 + scrollY / 10000})`,
-        filter: `blur(${scrollY / 100}px) brightness(${0.6 - scrollY / 10000})`,
+        filter: `blur(${scrollY / 500}px) brightness(${0.8 - scrollY / 10000})`,
       }" />
 
     <!--

@@ -1,10 +1,7 @@
 <template>
-  <UniversalHero 
-    bgsrc="../assets/hero-bg.jpg"
-    announcement-link="https://www.sae.org/attend/student-events/formula-sae-michigan"
-    cta-button-link="/about"
-    cta-link="/team"
-  >
+  <UniversalHero bgsrc="../assets/hero-bg.jpg"
+    announcement-link="https://www.sae.org/attend/student-events/formula-sae-michigan" cta-button-link="/about"
+    cta-link="/team">
     <template #announcement>
       <b>{{ countdown }}</b> until Formula SAE Michigan 2024!
     </template>
@@ -19,9 +16,6 @@
 
     <template #description>
       We are a student-run Formula SAE team that annually designs, manufactures, and assembles a formula-style race car.
-      <br />
-      <br />
-      Each year, we travel to Michigan International Speedway to compete against over 100 other student teams from around the world. Judged by industry professionals and track-tested against other teams' efforts, our goal is to develop the most exhilirating and innovative vehicle we possibly can.
     </template>
 
     <template #cta-button>
@@ -32,11 +26,25 @@
       Meet the Team
     </template>
   </UniversalHero>
+
+  <div class="relative min-h-fit isolate overflow-hidden border-t border-stone-600" @scroll="handleScroll">
+    <div class="mr-auto w-2/3 py-16 sm:py-24 lg:py-28 px-8 sm:px-12 lg:px-16 space-y-6 sm:space-y-8">
+      <h2 class="text-3xl font-bold tracking-tight text-stone-100 sm:text-4xl">
+        <span class="block">Who We Are</span>
+      </h2>
+
+      <p class="text-sm leading-8 text-stone-300 sm:text-base md:text-lg lg:text-xl">
+        Each year, we travel to Michigan International Speedway to compete against over 100 other student teams from
+        around the world. Judged by industry professionals and track-tested against other teams' efforts, our goal is to
+        develop the most exhilirating and innovative vehicle we possibly can.
+      </p>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import UniversalHero from '@/components/UniversalHero.vue';
-import { ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 
 // time till May 8-11, 2024 | Formula SAE Michigan, Brooklyn, MI
 // Dynamically updating countdown timer
@@ -57,4 +65,18 @@ const x = setInterval(() => {
     countdown.value = 'EXPIRED';
   }
 }, 1000);
+
+const scrollY = ref(0);
+
+const handleScroll = () => {
+  scrollY.value = window.scrollY;
+};
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+});
 </script>

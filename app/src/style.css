@@ -5,8 +5,6 @@
 * {
   box-sizing: border-box;
 
-  @apply font-sans;
-
   /* Optimize for legibility */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -25,4 +23,8 @@ body {
 
 a:hover {
   @apply underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-extrabold font-display;
 }

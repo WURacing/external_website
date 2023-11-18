@@ -9,8 +9,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
-        display: ['Montserrat', ...defaultTheme.fontFamily.sans],
+        sans: ['Nunito Sans', ...defaultTheme.fontFamily.sans],
+        display: ['Bebas Neue', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         'red': {

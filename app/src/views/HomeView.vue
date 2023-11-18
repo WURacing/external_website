@@ -102,6 +102,7 @@ onMounted(() => {
 
   // Make each letter of all titles uppercase
   titles.forEach((title) => {
+    // eslint-disable-next-line no-param-reassign
     title.innerHTML = title.innerHTML.toUpperCase()
   })
 })

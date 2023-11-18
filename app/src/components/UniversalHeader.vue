@@ -24,12 +24,12 @@
         </button>
       </div>
       <div class="hidden lg:flex lg:gap-x-12">
-        <RouterLink to="/" class="text-sm font-semibold leading-6 text-stone-100 hover:text-red-400">
+        <RouterLink to="/" class="text-sm font-semibold leading-6 text-stone-100 hover:text-red-500">
           Home
         </RouterLink>
         <Popover class="relative">
           <PopoverButton
-            class="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-stone-100 hover:text-red-400 rounded-md focus-visible:outline-0 focus-visible:ring-0">
+            class="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-stone-100 hover:text-red-500 rounded-md focus-visible:outline-0 focus-visible:ring-0">
             <span>Learn More</span>
             <ChevronDownIcon class="h-5 w-5" aria-hidden="true" />
           </PopoverButton>
@@ -41,7 +41,7 @@
               <div
                 class="w-56 shrink rounded-xl bg-stone-100 p-4 text-sm font-semibold leading-6 text-stone-900 shadow-lg ring-1 ring-stone-900/5">
                 <RouterLink v-for="item in isDropdown(true).value" :key="item.name" :to="item.to"
-                  class="block p-2 hover:text-red-600">
+                  class="block p-2 hover:text-red-500">
                   {{ item.name }}
                 </RouterLink>
               </div>
@@ -49,7 +49,7 @@
           </transition>
         </Popover>
         <RouterLink v-for="item in isDropdown(false).value" :key="item.name" :to="item.to"
-          class="text-sm font-semibold leading-6 text-stone-100 hover:text-red-400">
+          class="text-sm font-semibold leading-6 text-stone-100 hover:text-red-500">
           {{ item.name }}
         </RouterLink>
       </div>

@@ -63,7 +63,7 @@
         -->
         <div class="mt-10 flex items-center justify-center gap-x-6">
           <a :href="$props.ctaButtonLink"
-            class="rounded-md bg-red-500 px-3.5 py-2.5 text-sm font-semibold text-stone-100 shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-400">
+            class="rounded-md bg-red-500 px-3.5 py-2.5 text-sm font-semibold text-stone-100 shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-400">
             <slot name="cta-button" />
           </a>
 

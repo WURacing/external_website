@@ -29,11 +29,11 @@
 
   <div class="relative min-h-fit isolate overflow-hidden border-t border-stone-600" @scroll="handleScroll">
     <div class="mr-auto w-2/3 py-16 sm:py-24 lg:py-28 px-8 sm:px-12 lg:px-16 space-y-6 sm:space-y-8">
-      <h2 class="text-3xl font-bold tracking-tight text-stone-100 sm:text-4xl">
-        <span class="block">Who We Are</span>
+      <h2 class="text-2xl tracking-tight text-stone-100 sm:text-4xl md:text-5xl lg:text-6xl font-extrabold" data-title>
+        Who We Are
       </h2>
 
-      <p class="text-sm leading-8 text-stone-300 sm:text-base md:text-lg lg:text-xl">
+      <p class="text-lg leading-8 text-stone-300 sm:text-xl md:text-2xl lg:text-3xl">
         Each year, we travel to Michigan International Speedway to compete against over 100 other student teams from
         around the world. Judged by industry professionals and track-tested against other teams' efforts, our goal is to
         develop the most exhilirating and innovative vehicle we possibly can.
@@ -74,6 +74,27 @@ const handleScroll = () => {
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
+
+  // Dynamically update page title
+  const titles = document.querySelectorAll('[data-title]');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.intersectionRatio > 0) {
+        document.title = document.title ?? 'WashU Racing'
+      }
+    });
+  });
+
+  titles.forEach((title) => {
+    observer.observe(title);
+    console.log(title);
+  });
+
+  // Make each letter of all titles uppercase
+  titles.forEach((title) => {
+    title.innerHTML = title.innerHTML.toUpperCase();
+  });
 });
 
 onUnmounted(() => {

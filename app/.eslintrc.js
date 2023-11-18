@@ -4,7 +4,15 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: ['plugin:vue/vue3-recommended', 'airbnb-base', 'prettier'],
+  extends: [
+    'plugin:vue/vue3-essential',
+    'airbnb-base',
+    'prettier',
+    'plugin:prettier/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
+  ],
   overrides: [
     {
       env: {

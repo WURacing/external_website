@@ -15,9 +15,6 @@
   text-rendering: optimizeLegibility;
 }
 
-/* Red, black, and white color scheme */
-/* Predominantly black and red */
-
 body {
   @apply bg-stone-900;
 }

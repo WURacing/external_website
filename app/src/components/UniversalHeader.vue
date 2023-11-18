@@ -92,21 +92,15 @@
 </template>
 
 <script setup lang="ts">
-import RacingIcon from './icons/RacingIcon.vue';
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
-import { ref } from 'vue'
+import { computed, ref } from 'vue';
 import {
-  Dialog, DialogPanel, Disclosure, DisclosureButton, DisclosurePanel,
+  Dialog, DialogPanel,
   Popover, PopoverButton, PopoverPanel
 } from '@headlessui/vue'
-import { Bars3Icon, MinusSmallIcon, PlusSmallIcon, XMarkIcon, ChevronDownIcon } from '@heroicons/vue/24/outline'
+import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/vue/24/outline'
+import RacingIcon from './icons/RacingIcon.vue';
 
-const route = useRoute();
-const current = computed(() => route.path);
 const mobileMenuOpen = ref(false);
-
-const isDropdown = (isDropdown: boolean) => computed(() => navigation.filter(item => item.isDropdown === isDropdown));
 
 const navigation = [
   {
@@ -135,4 +129,6 @@ const navigation = [
     isDropdown: false,
   },
 ]
+
+const isDropdown = (isDropdown: boolean) => computed(() => navigation.filter((item) => item.isDropdown === isDropdown));
 </script>

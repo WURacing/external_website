@@ -1,10 +1,9 @@
 import type { Config } from 'tailwindcss';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import defaultTheme from 'tailwindcss/defaultTheme';
-import * as tailwindforms from '@tailwindcss/forms';
-import * as tailwindaspectratio from '@tailwindcss/aspect-ratio';
-import * as tailwindtypography from '@tailwindcss/typography';
-import * as tailwindchildren from 'tailwind-children';
+import tailwindforms from '@tailwindcss/forms';
+import tailwindaspectratio from '@tailwindcss/aspect-ratio';
+import tailwindtypography from '@tailwindcss/typography';
 
 export default {
   content: [
@@ -38,6 +37,5 @@ export default {
     tailwindforms,
     tailwindaspectratio,
     tailwindtypography,
-    tailwindchildren,
   ],
 } satisfies Config;

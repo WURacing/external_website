@@ -42,7 +42,7 @@
         class="text-2xl tracking-tight text-stone-100 sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gradient"
         data-title
       >
-        Who We Are
+        WHAT WE DO
       </h2>
 
       <p

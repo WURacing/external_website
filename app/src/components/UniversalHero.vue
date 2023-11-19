@@ -4,19 +4,23 @@
     @scroll="handleScroll"
   >
     <!--
-      Background image
+      Background video
     -->
-    <img
-      src="../assets/herobg.jpg"
-      alt="WashU FSAE Car"
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
       class="absolute inset-0 -z-10 h-full w-full object-cover object-center opacity-40 filter"
       :style="{
-        transform: `translateY(${scrollY / 10}px) scale(${
+        transform: `translateY(${scrollY / 2}px) scale(${
           1 + scrollY / 10000
         })`,
-        filter: `blur(${scrollY / 250}px) brightness(${0.8 - scrollY / 10000})`,
+        filter: `blur(${scrollY / 100}px) brightness(${0.4 - scrollY / 10000})`,
       }"
-    />
+    >
+      <source src="../assets/testing-emerson.mov" type="video/mp4" />
+    </video>
 
     <!--
       Background gradient
@@ -81,7 +85,7 @@
           Heading text
         -->
         <h1
-          class="text-3xl font-bold tracking-tight text-stone-100 sm:text-4xl md:text-5xl lg:text-6xl"
+          class="text-3xl font-extrabold tracking-tight text-stone-100 sm:text-4xl md:text-5xl lg:text-6xl text-gradient"
         >
           <slot name="heading" />
         </h1>
@@ -188,3 +192,12 @@ onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll);
 });
 </script>
+
+<style scoped>
+.text-gradient {
+  background: linear-gradient(to right, #d63030, #942020);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+</style>

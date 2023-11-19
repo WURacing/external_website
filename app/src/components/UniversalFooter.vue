@@ -5,8 +5,8 @@
     aria-labelledby="footer-heading"
   >
     <h2 id="footer-heading" class="sr-only">Footer</h2>
-    <div class="mx-auto px-6 py-8 sm:py-12 lg:px-8 lg:py-16">
-      <!-- 
+    <div class="mx-auto py-10 sm:py-16 lg:py-20 px-8 sm:px-12 lg:px-16">
+      <!--
         Logo
       -->
       <div class="xl:grid xl:grid-cols-3 xl:gap-8">
@@ -17,5 +17,5 @@
 </template>
 
 <script setup lang="ts">
-import RacingIcon from '@/components/icons/RacingIcon.vue'
+import RacingIcon from '@/components/icons/RacingIcon.vue';
 </script>

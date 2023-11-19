@@ -14,6 +14,6 @@
 </template>
 
 <script setup lang="ts">
-import UniversalHeader from '@/components/UniversalHeader.vue'
-import UniversalFooter from '@/components/UniversalFooter.vue'
+import UniversalHeader from '@/components/UniversalHeader.vue';
+import UniversalFooter from '@/components/UniversalFooter.vue';
 </script>

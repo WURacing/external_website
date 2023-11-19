@@ -81,7 +81,7 @@
           Heading text
         -->
         <h1
-          class="text-4xl font-bold tracking-tight text-stone-100 sm:text-6xl"
+          class="text-3xl font-bold tracking-tight text-stone-100 sm:text-4xl md:text-5xl lg:text-6xl"
         >
           <slot name="heading" />
         </h1>
@@ -153,7 +153,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue';
 
 defineProps({
   bgsrc: {
@@ -172,19 +172,19 @@ defineProps({
     type: String,
     default: '#',
   },
-})
+});
 
-const scrollY = ref(0)
+const scrollY = ref(0);
 
 const handleScroll = () => {
-  scrollY.value = window.scrollY
-}
+  scrollY.value = window.scrollY;
+};
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
-})
+  window.addEventListener('scroll', handleScroll);
+});
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-})
+  window.removeEventListener('scroll', handleScroll);
+});
 </script>

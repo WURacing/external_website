@@ -5,13 +5,9 @@ module.exports = {
     node: true,
   },
   extends: [
+    '@vue/eslint-config-airbnb',
+    '@vue/eslint-config-typescript',
     'plugin:vue/vue3-essential',
-    'airbnb-base',
-    'prettier',
-    'plugin:prettier/recommended',
-    'plugin:import/errors',
-    'plugin:import/warnings',
-    'plugin:import/typescript',
   ],
   overrides: [
     {
@@ -28,9 +24,6 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['vue', 'prettier'],
-  rules: {
-    'prettier/prettier': 'error',
-    indent: ['error', 2],
-  },
-}
+  plugins: ['vue'],
+  rules: {},
+};

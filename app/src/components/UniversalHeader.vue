@@ -1,10 +1,10 @@
 <template>
-  <!-- 
+  <!--
     Header
   -->
   <header class="absolute inset-x-0 top-0 z-50">
 
-    <!-- 
+    <!--
       Desktop Header
     -->
     <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
@@ -17,7 +17,9 @@
         </a>
       </div>
       <div class="flex lg:hidden">
-        <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-stone-400"
+        <button
+          type="button"
+          class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-stone-400"
           @click="mobileMenuOpen = true">
           <span class="sr-only">Open main menu</span>
           <Bars3Icon class="h-6 w-6" aria-hidden="true" />
@@ -34,13 +36,20 @@
             <ChevronDownIcon class="h-5 w-5" aria-hidden="true" />
           </PopoverButton>
 
-          <transition enter-active-class="transition ease-out duration-200" enter-from-class="opacity-0 translate-y-1"
-            enter-to-class="opacity-100 translate-y-0" leave-active-class="transition ease-in duration-150"
-            leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 translate-y-1">
+          <transition
+            enter-active-class="transition ease-out duration-200"
+            enter-from-class="opacity-0 translate-y-1"
+            enter-to-class="opacity-100 translate-y-0"
+            leave-active-class="transition ease-in duration-150"
+            leave-from-class="opacity-100 translate-y-0"
+            leave-to-class="opacity-0 translate-y-1">
             <PopoverPanel class="absolute left-1/2 z-10 mt-5 flex w-screen max-w-min -translate-x-1/2 px-4">
               <div
                 class="w-56 shrink rounded-xl bg-stone-100 p-4 text-sm font-semibold leading-6 text-stone-900 shadow-lg ring-1 ring-stone-900/5">
-                <RouterLink v-for="item in isDropdown(true).value" :key="item.name" :to="item.to"
+                <RouterLink
+                  v-for="item in isDropdown(true).value"
+                  :key="item.name"
+                  :to="item.to"
                   class="block p-2 hover:text-red-500">
                   {{ item.name }}
                 </RouterLink>
@@ -48,14 +57,17 @@
             </PopoverPanel>
           </transition>
         </Popover>
-        <RouterLink v-for="item in isDropdown(false).value" :key="item.name" :to="item.to"
+        <RouterLink
+          v-for="item in isDropdown(false).value"
+          :key="item.name"
+          :to="item.to"
           class="text-sm font-semibold leading-6 text-stone-100 hover:text-red-500">
           {{ item.name }}
         </RouterLink>
       </div>
     </nav>
 
-    <!-- 
+    <!--
       Mobile menu, show/hide based on mobile menu state.
     -->
     <Dialog as="div" class="lg:hidden" @close="mobileMenuOpen = false" :open="mobileMenuOpen">
@@ -77,10 +89,14 @@
         <div class="mt-6 flow-root">
           <div class="-my-6 divide-y divide-stone-500/100">
             <div class="space-y-2 py-6">
-              <RouterLink to="/"
+              <RouterLink
+                to="/"
                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-stone-100 hover:bg-stone-50">
                 Home</RouterLink>
-              <RouterLink v-for="item in navigation" :key="item.name" :to="item.to"
+              <RouterLink
+                v-for="item in navigation"
+                :key="item.name"
+                :to="item.to"
                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-stone-100 hover:bg-stone-50">
                 {{ item.name }}</RouterLink>
             </div>
@@ -95,9 +111,9 @@
 import { computed, ref } from 'vue';
 import {
   Dialog, DialogPanel,
-  Popover, PopoverButton, PopoverPanel
-} from '@headlessui/vue'
-import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/vue/24/outline'
+  Popover, PopoverButton, PopoverPanel,
+} from '@headlessui/vue';
+import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/vue/24/outline';
 import RacingIcon from './icons/RacingIcon.vue';
 
 const mobileMenuOpen = ref(false);
@@ -128,7 +144,8 @@ const navigation = [
     to: '/contact',
     isDropdown: false,
   },
-]
+];
 
-const isDropdown = (isDropdown: boolean) => computed(() => navigation.filter((item) => item.isDropdown === isDropdown));
+// eslint-disable-next-line vue/max-len
+const isDropdown = (getDropdown: boolean) => computed(() => navigation.filter((item) => item.isDropdown === getDropdown));
 </script>

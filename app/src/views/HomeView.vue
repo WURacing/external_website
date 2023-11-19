@@ -9,29 +9,37 @@
       <b>{{ countdown }}</b> until Formula SAE Michigan 2024!
     </template>
 
-    <template #announcement-link> Read More! </template>
+    <template #announcement-link>
+      Read More!
+    </template>
 
-    <template #heading> WashU Racing </template>
+    <template #heading>
+      WASHU RACING
+    </template>
 
     <template #description>
       We are a student-run Formula SAE team that annually designs, manufactures,
       and assembles a formula-style race car.
     </template>
 
-    <template #cta-button> Learn More </template>
+    <template #cta-button>
+      Learn More
+    </template>
 
-    <template #cta-link> Meet the Team </template>
+    <template #cta-link>
+      Meet the Team
+    </template>
   </UniversalHero>
 
   <div
     class="relative min-h-fit isolate overflow-hidden border-t border-stone-600"
-    @scroll="handleScroll"
   >
     <div
       class="mr-auto w-2/3 py-16 sm:py-24 lg:py-28 px-8 sm:px-12 lg:px-16 space-y-6 sm:space-y-8"
+      @scroll="handleScroll"
     >
       <h2
-        class="text-2xl tracking-tight text-stone-100 sm:text-4xl md:text-5xl lg:text-6xl font-extrabold"
+        class="text-2xl tracking-tight text-stone-100 sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gradient"
         data-title
       >
         Who We Are
@@ -51,63 +59,72 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
-import UniversalHero from '@/components/UniversalHero.vue'
+import { onMounted, onUnmounted, ref } from 'vue';
+import UniversalHero from '@/components/UniversalHero.vue';
 
 // Time till May 8-11, 2024 | Formula SAE Michigan, Brooklyn, MI
 // Dynamically updating countdown timer
-const countdown = ref('')
-const countDownDate = new Date('May 8, 2024 00:00:00').getTime()
+const countdown = ref('');
+const countDownDate = new Date('May 8, 2024 00:00:00').getTime();
 const x = setInterval(() => {
-  const now = new Date().getTime()
-  const distance = countDownDate - now
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24))
+  const now = new Date().getTime();
+  const distance = countDownDate - now;
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
   const hours = Math.floor(
-    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-  )
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000)
+    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+  );
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  countdown.value = `${days}d ${hours}h ${minutes}m ${seconds}s`
+  countdown.value = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
   if (distance < 0) {
-    clearInterval(x)
-    countdown.value = 'EXPIRED'
+    clearInterval(x);
+    countdown.value = 'EXPIRED';
   }
-}, 1000)
+}, 1000);
 
-const scrollY = ref(0)
+const scrollY = ref(0);
 
 const handleScroll = () => {
-  scrollY.value = window.scrollY
-}
+  scrollY.value = window.scrollY;
+};
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
+  window.addEventListener('scroll', handleScroll);
 
   // Dynamically update page title
-  const titles = document.querySelectorAll('[data-title]')
+  const titles = document.querySelectorAll('[data-title]');
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.intersectionRatio > 0) {
-        document.title = document.title ?? 'WashU Racing'
+        document.title = document.title ?? 'WashU Racing';
       }
-    })
-  })
+    });
+  });
 
   titles.forEach((title) => {
-    observer.observe(title)
-  })
+    observer.observe(title);
+  });
 
   // Make each letter of all titles uppercase
   titles.forEach((title) => {
     // eslint-disable-next-line no-param-reassign
-    title.innerHTML = title.innerHTML.toUpperCase()
-  })
-})
+    title.innerHTML = title.innerHTML.toUpperCase();
+  });
+});
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-})
+  window.removeEventListener('scroll', handleScroll);
+});
 </script>
+
+<style scoped>
+.text-gradient {
+  background: linear-gradient(to right, #d63030, #430c0c);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+</style>

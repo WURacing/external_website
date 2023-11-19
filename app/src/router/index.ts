@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import HomeView from '../views/HomeView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,8 +10,8 @@ const router = createRouter({
       component: HomeView,
       meta: {
         title: 'Home',
-        hideInFooter: false
-      }
+        hideInFooter: false,
+      },
     },
     {
       path: '/gallery',
@@ -19,15 +19,15 @@ const router = createRouter({
       component: () => import('../views/GalleryView.vue'),
       meta: {
         title: 'Gallery',
-        hideInFooter: false
-      }
-    }
-  ]
-})
+        hideInFooter: false,
+      },
+    },
+  ],
+});
 
 router.beforeEach((to, from, next) => {
-  document.title = `${to.meta.title}`
-  next()
-})
+  document.title = `${to.meta.title}`;
+  next();
+});
 
-export default router
+export default router;

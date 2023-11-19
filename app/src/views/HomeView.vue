@@ -36,7 +36,6 @@
   >
     <div
       class="mr-auto w-2/3 py-16 sm:py-24 lg:py-28 px-8 sm:px-12 lg:px-16 space-y-6 sm:space-y-8"
-      @scroll="handleScroll"
     >
       <h2
         class="text-2xl tracking-tight text-stone-100 sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gradient"
@@ -53,6 +52,44 @@
         industry professionals and track-tested against other teams' efforts,
         our goal is to develop the most exhilarating and innovative vehicle we
         possibly can.
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="relative min-h-fit isolate overflow-hidden border-t border-stone-600"
+  >
+    <img
+      src="../assets/comp-lab-1.jpg"
+      class="absolute inset-0 -z-10 h-full w-full object-cover object-center opacity-40 filter"
+      :style="{
+        transform: `translateY(${scrollY / 2}px) scale(${1 + scrollY / 10000
+        })`,
+        filter: `blur(${scrollY / 100}px) brightness(${0.4 - scrollY / 10000})`,
+      }"
+      alt="Working in the computer lab"
+    >
+    <div
+      class="mr-auto w-2/3 py-16 sm:py-24 lg:py-28 px-8 sm:px-12 lg:px-16 space-y-6 sm:space-y-8"
+      @scroll="handleScroll"
+    >
+      <h2
+        class="text-2xl tracking-tight text-stone-100 sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gradient"
+        data-title
+      >
+        DESIGN.
+      </h2>
+
+      <p
+        class="text-lg leading-8 text-stone-300 sm:text-xl md:text-2xl lg:text-3xl"
+      >
+        From materials science testing on our carbon-fiber suspension linkages, to our sand-casted
+        custom oil pan, to our beautifully crafted cockpit and driver controls systems, all
+        our designs must live up to our most stringent standards.
+        <br />
+        <br />
+        We are judged by industry professionals on our application and understanding of engineering
+        design principles at competition, so every part is scrutinized before it goes on the car.
       </p>
     </div>
   </div>

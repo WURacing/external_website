@@ -61,9 +61,9 @@
     class="relative min-h-fit w-auto isolate overflow-hidden border-t border-stone-600"
   >
     <img
-      :src="src"
-      class="absolute -z-10 object-cover object-top filter opacity-20 h-full w-full"
-      alt="Working in the computer lab"
+      src="../assets/machineshop-1.jpg?w=700&format=webp&as=src"
+      class="absolute -z-10 object-cover object-top filter opacity-20 w-full"
+      alt="Working in the machine shop"
       data-speed="auto"
     >
     <div
@@ -90,6 +90,75 @@
       </p>
     </div>
   </div>
+
+  <div
+    class="relative min-h-fit w-auto isolate overflow-hidden border-t border-stone-600"
+  >
+    <div
+      class="ml-auto w-full py-16 sm:py-24 lg:py-28 px-8 sm:px-16 md:px-32 lg:px-64 xl:px-96 space-y-6 sm:space-y-8 text-right"
+      data-aos="fade-left"
+    >
+      <h2
+        class="text-2xl tracking-tight text-stone-100 sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gradient"
+        data-title
+      >
+        BUILD.
+      </h2>
+
+      <p
+        class="text-lg leading-8 text-stone-300 sm:text-xl md:text-2xl lg:text-3xl"
+      >
+        Thanks to our incredible manufacturing team, we have been able to consistently
+        increase the quality and consistency of the parts we make.
+        <br />
+        <br />
+        With the opening of Jubel Hall and its state-of-the-art machine shop, we can use 4-axis
+        CNC machining, CNC lathing, waterjetting, casting and many other techniques to make
+        our designs come to life.
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="relative min-h-fit w-auto isolate overflow-hidden border-t border-stone-600"
+  >
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster="../assets/driving.jpg"
+      class="absolute inset-0 w-full object-top object-cover -z-10 filter opacity-20 scale-[1.8]"
+      data-speed="auto"
+    >
+      <source src="../assets/testing-stcharlesfamilyarena.mov" type="video/mp4" />
+    </video>
+    <div
+      class="ml-auto w-full py-16 sm:py-24 lg:py-28 px-8 sm:px-16 md:px-32 lg:px-64 xl:px-96 space-y-6 sm:space-y-8 text-left"
+      data-aos="fade-right"
+    >
+      <h2
+        class="text-2xl tracking-tight text-stone-100 sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gradient"
+        data-title
+      >
+        TEST.
+      </h2>
+
+      <p
+        class="text-lg leading-8 text-stone-300 sm:text-xl md:text-2xl lg:text-3xl"
+      >
+        Ultimately, our designs don't matter unless they work as intended.
+        We test and validate our designs using an astounding array of sensors,
+        including brake temperature and pressure sensors, strain gauges, 3-axis gyroscopes,
+        accelerometers, wheel-speed sensors and onboard GPS telemetry.
+        <br />
+        <br />
+        When things don't go as planned, we revamp our designs and keep steadfastly
+        pushing to make sure our vehicle is the best it can be.
+      </p>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -98,9 +167,6 @@ import {
 } from 'vue';
 import { gsap } from 'gsap';
 import UniversalHero from '@/components/UniversalHero.vue';
-import {
-  designWidth, designHeight, designFormat, src,
-} from '../assets/comp-lab-1.jpg?w=700&format=webp&as=metadata';
 
 // Time till May 8-11, 2024 | Formula SAE Michigan, Brooklyn, MI
 // Dynamically updating countdown timer
@@ -150,7 +216,7 @@ onMounted(() => {
 
 <style scoped>
 .text-gradient {
-  background: linear-gradient(to right, #d63030, #430c0c);
+  background: linear-gradient(to right, #d63030, #942020);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;

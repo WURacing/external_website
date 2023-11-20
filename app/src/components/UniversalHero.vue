@@ -12,7 +12,7 @@
       playsinline
       preload="auto"
       poster="../assets/driving.jpg"
-      class="absolute inset-0 h-full w-auto object-center object-cover -z-10 filter opacity-20"
+      class="absolute inset-0 h-full object-top object-cover -z-10 filter opacity-20 scale-[1.5]"
       data-speed="auto"
     >
       <source src="../assets/testing-emerson.mov" type="video/mp4" />

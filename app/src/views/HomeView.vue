@@ -35,7 +35,8 @@
     class="relative min-h-fit isolate overflow-hidden border-t border-stone-600"
   >
     <div
-      class="mr-auto w-2/3 py-16 sm:py-24 lg:py-28 px-8 sm:px-12 lg:px-16 space-y-6 sm:space-y-8"
+      class="mr-auto w-full py-16 sm:py-24 lg:py-28 px-8 sm:px-16 md:px-32 lg:px-64 xl:px-96 space-y-6 sm:space-y-8 text-center"
+      data-aos="fade-up"
     >
       <h2
         class="text-2xl tracking-tight text-stone-100 sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gradient"
@@ -57,21 +58,17 @@
   </div>
 
   <div
-    class="relative min-h-fit isolate overflow-hidden border-t border-stone-600"
+    class="relative min-h-fit w-auto isolate overflow-hidden border-t border-stone-600"
   >
     <img
-      src="../assets/comp-lab-1.jpg"
-      class="absolute inset-0 -z-10 h-full w-full object-cover object-center opacity-40 filter"
-      :style="{
-        transform: `translateY(${scrollY / 2}px) scale(${1 + scrollY / 10000
-        })`,
-        filter: `blur(${scrollY / 100}px) brightness(${0.4 - scrollY / 10000})`,
-      }"
+      :src="src"
+      class="absolute -z-10 object-cover object-top filter opacity-20 h-full w-full"
       alt="Working in the computer lab"
+      data-speed="auto"
     >
     <div
-      class="mr-auto w-2/3 py-16 sm:py-24 lg:py-28 px-8 sm:px-12 lg:px-16 space-y-6 sm:space-y-8"
-      @scroll="handleScroll"
+      class="ml-auto w-full py-16 sm:py-24 lg:py-28 px-8 sm:px-16 md:px-32 lg:px-64 xl:px-96 space-y-6 sm:space-y-8 text-left"
+      data-aos="fade-right"
     >
       <h2
         class="text-2xl tracking-tight text-stone-100 sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gradient"
@@ -96,8 +93,14 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue';
+import {
+  onBeforeMount, onUnmounted, ref, onMounted,
+} from 'vue';
+import { gsap } from 'gsap';
 import UniversalHero from '@/components/UniversalHero.vue';
+import {
+  designWidth, designHeight, designFormat, src,
+} from '../assets/comp-lab-1.jpg?w=700&format=webp&as=metadata';
 
 // Time till May 8-11, 2024 | Formula SAE Michigan, Brooklyn, MI
 // Dynamically updating countdown timer
@@ -121,15 +124,7 @@ const x = setInterval(() => {
   }
 }, 1000);
 
-const scrollY = ref(0);
-
-const handleScroll = () => {
-  scrollY.value = window.scrollY;
-};
-
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll);
-
   // Dynamically update page title
   const titles = document.querySelectorAll('[data-title]');
 
@@ -150,10 +145,6 @@ onMounted(() => {
     // eslint-disable-next-line no-param-reassign
     title.innerHTML = title.innerHTML.toUpperCase();
   });
-});
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll);
 });
 </script>
 

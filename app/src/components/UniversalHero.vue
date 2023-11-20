@@ -1,7 +1,6 @@
 <template>
   <div
     class="relative min-h-screen isolate overflow-hidden pt-14"
-    @scroll="handleScroll"
   >
     <!--
       Background video
@@ -11,13 +10,10 @@
       muted
       loop
       playsinline
-      class="absolute inset-0 -z-10 h-full w-full object-cover object-center opacity-40 filter"
-      :style="{
-        transform: `translateY(${scrollY / 2}px) scale(${
-          1 + scrollY / 10000
-        })`,
-        filter: `blur(${scrollY / 100}px) brightness(${0.4 - scrollY / 10000})`,
-      }"
+      preload="auto"
+      poster="../assets/driving.jpg"
+      class="absolute inset-0 h-full w-auto object-center object-cover -z-10 filter opacity-20"
+      data-speed="auto"
     >
       <source src="../assets/testing-emerson.mov" type="video/mp4" />
     </video>
@@ -25,10 +21,7 @@
     <!--
       Background gradient
     -->
-    <div
-      class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-      aria-hidden="true"
-    >
+    <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
       <div
         class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-red-500 to-red-800 opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
         style="
@@ -157,8 +150,6 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue';
-
 defineProps({
   bgsrc: {
     type: String,
@@ -176,20 +167,6 @@ defineProps({
     type: String,
     default: '#',
   },
-});
-
-const scrollY = ref(0);
-
-const handleScroll = () => {
-  scrollY.value = window.scrollY;
-};
-
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll);
 });
 </script>
 

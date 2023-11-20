@@ -179,7 +179,7 @@ onMounted(() => {
     stagger: {
       each: 0.1,
       grid: 'auto',
-      from: 'random', // Animates from the top
+      from: 'random',
       amount: 1,
     },
     // Slight randomness to the start time of each animation

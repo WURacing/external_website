@@ -35,7 +35,7 @@
     class="relative min-h-fit isolate overflow-hidden border-t border-stone-600"
   >
     <div
-      class="mr-auto w-full py-16 sm:py-24 lg:py-28 px-8 sm:px-16 md:px-32 lg:px-64 xl:px-96 space-y-6 sm:space-y-8 text-center"
+      class="mx-auto w-full py-8 sm:py-16 lg:py-24 px-8 sm:px-16 md:px-32 lg:px-64 xl:px-96 space-y-6 sm:space-y-8 text-center"
       data-aos="fade-up"
     >
       <h2
@@ -67,7 +67,7 @@
       data-speed="auto"
     >
     <div
-      class="ml-auto w-full py-16 sm:py-24 lg:py-28 px-8 sm:px-16 md:px-32 lg:px-64 xl:px-96 space-y-6 sm:space-y-8 text-left"
+      class="mr-auto w-full py-8 sm:py-16 lg:py-24 px-8 sm:px-16 md:px-32 lg:px-64 xl:px-96 space-y-6 sm:space-y-8 text-left"
       data-aos="fade-right"
     >
       <h2
@@ -95,7 +95,7 @@
     class="relative min-h-fit w-auto isolate overflow-hidden border-t border-stone-600"
   >
     <div
-      class="ml-auto w-full py-16 sm:py-24 lg:py-28 px-8 sm:px-16 md:px-32 lg:px-64 xl:px-96 space-y-6 sm:space-y-8 text-right"
+      class="mr-auto w-full py-8 sm:py-16 lg:py-24 px-8 sm:px-16 md:px-32 lg:px-64 xl:px-96 space-y-6 sm:space-y-8 text-right"
       data-aos="fade-left"
     >
       <h2
@@ -129,13 +129,13 @@
       playsinline
       preload="auto"
       poster="../assets/driving.jpg"
-      class="absolute inset-0 w-full object-top object-cover -z-10 filter opacity-20 scale-[1.8]"
+      class="absolute inset-0 w-full object-top object-cover -z-10 filter opacity-20 scale-[1.6]"
       data-speed="auto"
     >
       <source src="../assets/testing-stcharlesfamilyarena.mov" type="video/mp4" />
     </video>
     <div
-      class="ml-auto w-full py-16 sm:py-24 lg:py-28 px-8 sm:px-16 md:px-32 lg:px-64 xl:px-96 space-y-6 sm:space-y-8 text-left"
+      class="ml-auto w-full py-8 sm:py-16 lg:py-24 px-8 sm:px-16 md:px-32 lg:px-64 xl:px-96 space-y-6 sm:space-y-8 text-left"
       data-aos="fade-right"
     >
       <h2

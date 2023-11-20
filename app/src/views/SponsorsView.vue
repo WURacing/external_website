@@ -38,19 +38,17 @@
           >
             <img
               :src="sponsor.logo"
-              class="w-full h-48 object-cover"
+              class="w-full h-fit object-cover"
               alt="Sponsor Logo"
               v-shared-element:[sponsor.id]
             />
             <div class="p-4">
               <!-- Sponsor name -->
-              <h3 class="text-lg font-semibold text-stone-800">{{ sponsor.name }}</h3>
+              <a :href="sponsor.link" class="text-lg font-semibold text-stone-800 hover:text-stone-700 transition-colors duration-300 ease-in-out">
+                {{ sponsor.name }}
+              </a>
               <!-- Sponsor Tier -->
               <p class="text-sm text-stone-900">{{ sponsor.tier }}</p>
-              <!-- Sponsor link -->
-              <a :href="sponsor.link" class="text-sm text-stone-800 hover:text-stone-700 transition-colors duration-300 ease-in-out">
-                {{ sponsor.link }}
-              </a>
             </div>
           </div>
         </div>
@@ -163,47 +161,33 @@ onMounted(() => {
     title.innerHTML = title.innerHTML.toUpperCase();
   });
 
-  // Animate the sponsor cards on load
+  // Select all sponsor cards
   const cards = document.querySelectorAll('.sponsor-card');
 
-  cards.forEach((card) => {
-    const img = card.querySelector('img');
-    const content = card.querySelector('div');
+  // Set initial state of cards to invisible
+  gsap.set(cards, { autoAlpha: 0, y: 50 });
 
-    gsap.set([img, content], { autoAlpha: 0 });
+  // Create a timeline for the stagger animation
+  const tl = gsap.timeline({
+    defaults: { ease: 'power3.out' },
+  });
 
-    const tl = gsap.timeline({
-      defaults: {
-        duration: 1,
-        ease: 'power3.inOut',
-      },
-    });
-
-    tl.fromTo(
-      img,
-      {
-        y: '-=50',
-        stagger: {
-          amount: 1.5,
-          grid: 'auto',
-          axis: 'y',
-          ease: 'power3.inOut',
-          from: 'center',
-        },
-      },
-      {
-        y: '+=50',
-        autoAlpha: 1,
-        stagger: {
-          amount: 1.5,
-          grid: 'auto',
-          axis: 'y',
-          ease: 'power3.inOut',
-          from: 'center',
-        },
-      },
-    )
-      .fromTo(content, { y: '+=50' }, { y: '-=50', autoAlpha: 1 }, '-=0.5');
+  // Animate cards into view with a stagger from top-to-bottom
+  tl.to(cards, {
+    autoAlpha: 1,
+    y: 0,
+    stagger: {
+      each: 0.1,
+      grid: 'auto',
+      from: 'random', // Animates from the top
+      amount: 1,
+    },
+    // Slight randomness to the start time of each animation
+    onStart: () => {
+      gsap.set(cards, {
+        delay: gsap.utils.random(0, 0.2), // Random delay for each card
+      });
+    },
   });
 });
 

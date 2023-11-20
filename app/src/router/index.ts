@@ -22,6 +22,15 @@ const router = createRouter({
         hideInFooter: false,
       },
     },
+    {
+      path: '/sponsors',
+      name: 'sponsors',
+      component: () => import('../views/SponsorsView.vue'),
+      meta: {
+        title: 'Sponsors',
+        hideInFooter: false,
+      },
+    },
   ],
 });
 

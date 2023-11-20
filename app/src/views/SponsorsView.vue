@@ -203,19 +203,6 @@ const closeModal = () => {
 };
 
 const sponsors: Sponsor[] = [
-  // DIAMOND: Boeing, Anysys, Evonik, Spartan, WashU Student Union, Solidworks, Atlassian
-  // PLATINUM: Altium, Siemens, VI-Grade, Gamma Technologies
-  // GOLD: Emerson, Mohela, 3DConnexion, Zoltek
-  // SILVER: OZ Racing, Hoosier, BP FAB, Texense, RapidHarness, FPCO, Zimmeman, SKF,
-  //  Aurora Bearing Company,
-  //  Washington University in St.Louis - James McKelvey School of Engineering,
-  //  The Women's Society of Washington University - 50 Years of Service,
-  //  Archway Anodize, Gateway Motorsports Park, Kartplex
-  // BRONZE: Perficient, Porsche St.Louis, Syndicate Performance, Wegner Motorsports
-  //  Odum Performance, Performance Electronics, Pingel, TMS Titanium, Lmi Aerospace
-  //  Calspan, OptimumG, Denco Powder Coating Systems, ATL Aero Tec Laboratories
-  //  MSC Software, Sauer ET St.Louis, Clearwater Composites, LLC, Micro Measurements
-  //  Busch, Fibre Glast, Composite Envisions
   {
     id: 'boeing',
     name: 'Boeing',

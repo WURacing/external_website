@@ -14,7 +14,7 @@
             OUR SPONSORS
           </h2>
 
-          <a class="text-stone-100 hover:text-stone-200 transition-colors duration-300 ease-in-out" @click="openModal">
+          <a class="text-stone-100 hover:text-stone-200 transition-colors duration-300 ease-in-out" @click="openModal" :href="'#'">
             View Our Sponsorship Packet
           </a>
         </div>
@@ -23,32 +23,37 @@
           <div
             v-for="sponsor in sponsors"
             :key="sponsor.id"
-            class="sponsor-card bg-stone-100 rounded-lg shadow-lg overflow-hidden transition-shadow duration-300 ease-in-out transform filter hover:shadow-xl"
-            :class="{
-              'diamond-sponsor': sponsor.tier === 'Diamond',
-              'platinum-sponsor': sponsor.tier === 'Platinum',
-              'gold-sponsor': sponsor.tier === 'Gold',
-              'silver-sponsor': sponsor.tier === 'Silver',
-              'bronze-sponsor': sponsor.tier === 'Bronze',
-            }"
+            class="sponsor-card relative w-full bg-stone-100 rounded-lg shadow-lg overflow-hidden transition-shadow duration-300 ease-in-out transform filter hover:shadow-xl"
             @mouseenter="animateCard"
             @mouseleave="resetAnimation"
             @focusin="animateCard"
             @focusout="resetAnimation"
           >
-            <img
-              :src="sponsor.logo"
-              class="w-full h-fit object-cover"
-              alt="Sponsor Logo"
-              v-shared-element:[sponsor.id]
-            />
-            <div class="p-4">
-              <!-- Sponsor name -->
-              <a :href="sponsor.link" class="text-lg font-semibold text-stone-800 hover:text-stone-700 transition-colors duration-300 ease-in-out">
-                {{ sponsor.name }}
-              </a>
-              <!-- Sponsor Tier -->
-              <p class="text-sm text-stone-900">{{ sponsor.tier }}</p>
+            <!-- Image container with gradient overlay -->
+            <div class="relative w-full h-48">
+              <!-- Sponsor logo image -->
+              <img
+                :src="sponsor.logo"
+                class="absolute inset-0 w-full h-full object-cover"
+                alt="Sponsor Logo"
+                v-shared-element:[sponsor.id]
+              />
+              <!-- Gradient overlay -->
+              <div class="absolute inset-0 bg-gradient-to-b from-stone-100/50 to-stone-100/75" />
+
+              <!-- Text content over gradient -->
+              <div class="p-4 relative w-full h-full flex flex-col justify-center">
+                <!-- Sponsor name -->
+                <a
+                  :href="sponsor.link"
+                  class="text-lg font-extrabold text-stone-800 hover:text-stone-700 transition-colors duration-300 ease-in-out text-gradient"
+                  data-title
+                >
+                  {{ sponsor.name }}
+                </a>
+                <!-- Sponsor Tier -->
+                <p class="text-sm text-stone-900">{{ sponsor.tier }}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -207,7 +212,7 @@ const sponsors: Sponsor[] = [
     id: 'boeing',
     name: 'Boeing',
     tier: 'Diamond',
-    logo: 'https://via.placeholder.com/300x150',
+    logo: '../assets/sponsors/boeing.jpg?w=700&format=webp&as=src',
     link: 'https://www.boeing.com/',
   },
   {
@@ -373,14 +378,14 @@ const sponsors: Sponsor[] = [
   },
   {
     id: 'washington-university-in-st-louis-james-mckelvey-school-of-engineering',
-    name: 'Washington University in St. Louis - James McKelvey School of Engineering',
+    name: 'James McKelvey School of Engineering',
     tier: 'Silver',
     logo: 'https://via.placeholder.com/300x150',
     link: 'https://engineering.wustl.edu/',
   },
   {
-    id: 'the-womens-society-of-washington-university-50-years-of-service',
-    name: 'The Women\'s Society of Washington University - 50 Years of Service',
+    id: 'the-womens-society-of-washington-university',
+    name: 'The Women\'s Society of Washington University',
     tier: 'Silver',
     logo: 'https://via.placeholder.com/300x150',
     link: 'https://womensociety.wustl.edu/',

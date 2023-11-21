@@ -32,7 +32,7 @@
   </UniversalHero>
 
   <div
-    class="relative min-h-fit isolate overflow-hidden border-t border-stone-600"
+    class="relative min-h-fit w-full isolate overflow-hidden border-t-4 border-stone-800"
   >
     <div
       class="mx-auto w-full py-8 sm:py-16 lg:py-24 px-8 sm:px-16 md:px-32 lg:px-64 xl:px-96 space-y-6 sm:space-y-8 text-center"
@@ -58,13 +58,13 @@
   </div>
 
   <div
-    class="relative min-h-fit w-auto isolate overflow-hidden border-t border-stone-600"
+    class="relative min-h-fit w-full isolate overflow-hidden border-t-4 border-stone-800"
   >
     <img
       src="../assets/machineshop-1.jpg?w=700&format=webp&as=src"
-      class="absolute -z-10 object-cover object-top filter opacity-20 w-full"
       alt="Working in the machine shop"
-      data-speed="auto"
+      class="absolute inset-0 -z-10 filter opacity-20 scale-[1.5] object-cover object-center w-full h-full"
+      data-speed="clamp(auto)"
     >
     <div
       class="mr-auto w-full py-8 sm:py-16 lg:py-24 px-8 sm:px-16 md:px-32 lg:px-64 xl:px-96 space-y-6 sm:space-y-8 text-left"
@@ -92,7 +92,7 @@
   </div>
 
   <div
-    class="relative min-h-fit w-auto isolate overflow-hidden border-t border-stone-600"
+    class="relative min-h-fit w-full isolate overflow-hidden border-t-4 border-stone-800"
   >
     <div
       class="mr-auto w-full py-8 sm:py-16 lg:py-24 px-8 sm:px-16 md:px-32 lg:px-64 xl:px-96 space-y-6 sm:space-y-8 text-right"
@@ -120,7 +120,7 @@
   </div>
 
   <div
-    class="relative min-h-fit w-auto isolate overflow-hidden border-t border-stone-600"
+    class="relative min-h-fit w-full isolate overflow-hidden border-t-4 border-stone-800"
   >
     <video
       autoplay
@@ -129,7 +129,7 @@
       playsinline
       preload="auto"
       poster="../assets/driving.jpg"
-      class="absolute inset-0 w-full object-top object-cover -z-10 filter opacity-20 scale-[1.6]"
+      class="absolute h-full w-full inset-0 -z-10 filter opacity-20 scale-[1.5] object-cover object-center"
       data-speed="auto"
     >
       <source src="../assets/testing-stcharlesfamilyarena.mov" type="video/mp4" />

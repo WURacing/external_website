@@ -50,7 +50,7 @@
     <!--
       Content
     -->
-    <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col mx-auto my-auto h-full max-w-2xl py-32 sm:py-48 lg:py-56 px-4 sm:px-6 lg:px-8">
       <!--
         Announcement
       -->
@@ -78,7 +78,7 @@
           Heading text
         -->
         <h1
-          class="text-3xl font-extrabold tracking-tight text-stone-100 sm:text-4xl md:text-5xl lg:text-6xl text-gradient"
+          class="text-5xl font-extrabold tracking-tight text-stone-100 md:text-5xl lg:text-6xl text-gradient"
         >
           <slot name="heading" />
         </h1>
@@ -88,7 +88,7 @@
         -->
         <!-- Responsive text sizing -->
         <p
-          class="mt-6 text-sm leading-8 text-stone-300 sm:text-base md:text-lg lg:text-xl"
+          class="mt-6 text-xl leading-8 text-stone-300 lg:text-2xl"
         >
           <slot name="description" />
         </p>

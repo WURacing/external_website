@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative min-h-fit isolate overflow-hidden border-t border-stone-600"
+    class="relative min-h-fit isolate overflow-hidden border-t-4 border-stone-800"
   />
 </template>
 

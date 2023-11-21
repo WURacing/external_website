@@ -1,7 +1,7 @@
 <template>
   <!-- Footer -->
   <footer
-    class="bg-stone-900 border-t border-stone-600"
+    class="bg-stone-900 border-t-4 border-stone-800"
     aria-labelledby="footer-heading"
   >
     <h2 id="footer-heading" class="sr-only">Footer</h2>

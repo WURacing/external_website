@@ -22,7 +22,7 @@
           class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-stone-400"
           @click="mobileMenuOpen = true">
           <span class="sr-only">Open main menu</span>
-          <Bars3Icon class="h-6 w-6" aria-hidden="true" />
+          <font-awesome-icon :icon="['fas', 'bars']" class="h-6 w-6 text-stone-100" aria-hidden="true" />
         </button>
       </div>
       <div class="hidden lg:flex lg:gap-x-12">
@@ -33,7 +33,7 @@
           <PopoverButton
             class="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-stone-100 hover:text-red-500 rounded-md focus-visible:outline-0 focus-visible:ring-0">
             <span>Learn More</span>
-            <ChevronDownIcon class="h-5 w-5" aria-hidden="true" />
+            <font-awesome-icon :icon="['fas', 'chevron-down']" class="h-2 w-2 text-stone-100" aria-hidden="true" />
           </PopoverButton>
 
           <transition
@@ -83,7 +83,7 @@
           </a>
           <button type="button" class="-m-2.5 rounded-md p-2.5 text-stone-400" @click="mobileMenuOpen = false">
             <span class="sr-only">Close menu</span>
-            <XMarkIcon class="h-6 w-6" aria-hidden="true" />
+            <font-awesome-icon :icon="['fas', 'times']" class="h-6 w-6 text-stone-100" aria-hidden="true" />
           </button>
         </div>
         <div class="mt-6 flow-root">
@@ -113,7 +113,6 @@ import {
   Dialog, DialogPanel,
   Popover, PopoverButton, PopoverPanel,
 } from '@headlessui/vue';
-import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/vue/24/outline';
 import RacingIcon from './icons/RacingIcon.vue';
 
 const mobileMenuOpen = ref(false);
@@ -137,11 +136,6 @@ const navigation = [
   {
     name: 'Sponsors',
     to: '/sponsors',
-    isDropdown: false,
-  },
-  {
-    name: 'Contact',
-    to: '/contact',
     isDropdown: false,
   },
 ];

@@ -2,22 +2,17 @@
   <a
     data-aos="fade-up"
     :href="sponsor.link"
-    class="sponsor-card block rounded-lg overflow-hidden shadow-lg transition-transform hover:shadow-2xl focus:outline-none"
+    class="sponsor-card block rounded-lg overflow-hidden shadow-lg transition-transform hover:shadow-2xl focus:outline-none bg-gradient-to-r from-stone-800 to-stone-900"
     @mouseenter="animate"
     @mouseleave="resetAnimation"
     @focusin="animate"
     @focusout="resetAnimation">
-    <div class="flex justify-between items-center p-4 bg-gradient-to-r from-gray-800 to-gray-900">
-      <div class="flex items-center">
-        <SponsorIcon :tier="sponsor.tier" class="h-8 w-8 text-white mr-2" />
-        <h3 class="font-bold text-lg text-white">{{ sponsor.name }}</h3>
+    <div class="flex justify-between items-center p-4 h-full space-x-4">
+      <div class="flex flex-row items-center justify-center">
+        <h3 class="font-bold text-lg text-stone-100">{{ sponsor.name }}</h3>
       </div>
 
       <TierBadge :tier="sponsor.tier" />
-    </div>
-    <!-- Optional content -->
-    <div class="aspect-w-16 aspect-h-9 bg-gray-200">
-      <!-- Here could be a image or something related to sponsor -->
     </div>
   </a>
 </template>
@@ -41,10 +36,10 @@ onMounted(() => {
 const animate = (event: MouseEvent) => {
   const card = event.currentTarget as HTMLElement;
   gsap.to(card, {
-    scale: 1.05,
-    borderRadius: '1rem',
+    scale: 1.1,
     transformOrigin: 'bottom center',
-    ease: 'power2.out',
+    ease: 'racingBounce',
+    duration: 0.2,
   });
 };
 
@@ -52,9 +47,9 @@ const resetAnimation = (event: MouseEvent) => {
   const card = event.currentTarget as HTMLElement;
   gsap.to(card, {
     scale: 1,
-    borderRadius: '0.5rem',
     transformOrigin: 'bottom center',
-    ease: 'power2.out',
+    ease: 'racingBounce',
+    duration: 0.2,
   });
 };
 </script>

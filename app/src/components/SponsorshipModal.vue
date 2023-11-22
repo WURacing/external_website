@@ -1,59 +1,47 @@
 <template>
+  <!-- Main modal container with headlessui for accessibility and control -->
   <TransitionRoot appear :show="isModalOpen" as="template">
-    <Dialog as="div" @close="closeModal" class="relative z-50">
-      <TransitionChild
-        as="template"
-        enter="duration-300 ease-out"
-        enter-from="opacity-0"
-        enter-to="opacity-100"
-        leave="duration-200 ease-in"
-        leave-from="opacity-100"
-        leave-to="opacity-0"
+    <Dialog as="div" @close="closeModal" class="relative z-50" :class="{ 'modal-open': isModalOpen }">
+      <!-- Overlay with AOS fade -->
+      <div class="fixed inset-0 bg-stone-100/10" />
+      <!-- Modal dialog container with AOS zoom -->
+      <div
+        class="relative inset-0 overflow-y-auto flex items-center justify-center p-4"
       >
-        <div class="fixed inset-0 bg-stone-900/25" />
-      </TransitionChild>
-
-      <div class="fixed inset-0 overflow-y-scroll h-screen">
-        <div
-          class="flex min-h-full items-center justify-center p-4 text-center"
+        <DialogPanel
+          class="w-full max-w-4xl transform rounded-lg bg-stone-900 p-6 shadow-xl transition-all"
+          id="sponsorship-modal"
         >
-          <TransitionChild
-            as="template"
-            enter="duration-300 ease-out"
-            enter-from="opacity-0 scale-95"
-            enter-to="opacity-100 scale-100"
-            leave="duration-200 ease-in"
-            leave-from="opacity-100 scale-100"
-            leave-to="opacity-0 scale-95"
-          >
-            <DialogPanel
-              class="w-full max-w-4xl h-screen transform overflow-hidden rounded-2xl bg-stone-100 p-6 text-left align-middle shadow-xl transition-all"
-            >
-              <DialogTitle
-                as="h3"
-                class="text-lg font-medium leading-6 text-gray-900"
-              >
-                Sponsorship Packet
-              </DialogTitle>
-              <div class="mt-2 w-full h-full overflow-y-scroll">
-                <vue-pdf-embed
-                  class="w-full h-screen overflow-y-scroll rounded-2xl shadow-xl"
-                  :source="source"
-                />
-              </div>
-
-              <div class="mt-4">
-                <button
-                  type="button"
-                  class="inline-flex justify-center rounded-md border border-t-4ransparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                  @click="closeModal"
-                >
-                  Close
-                </button>
-              </div>
-            </DialogPanel>
-          </TransitionChild>
-        </div>
+          <!--
+          Modal header with close button
+          -->
+          <div class="flex justify-between items-center">
+            <DialogTitle class="text-2xl font-bold text-stone-100">Sponsorship Packet</DialogTitle>
+            <button
+              type="button"
+              class="rounded-md p-2 inline-flex items-center justify-center text-stone-100 hover:text-stone-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-stone-200"
+              @click="closeModal">
+              <font-awesome-icon :icon="['fas', 'times']" class="h-6 w-6 text-stone-100 fill-current" />
+            </button>
+          </div>
+          <!-- PDF Embed container with GSAP-powered scroll fade -->
+          <div class="mt-4 w-full h-80vh bg-stone-900 rounded shadow overflow-y-auto" id="pdf-container">
+            <vue-pdf-embed class="w-full rounded" :source="source" />
+          </div>
+          <!-- Closing section with a button enhanced with GSAP hover scale -->
+          <div class="mt-4 text-right">
+            <button
+              type="button"
+              class="inline-flex justify-center px-4 py-2 text-sm font-medium text-stone-900 bg-stone-100 border border-transparent rounded-md hover:bg-stone-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-stone-500"
+              @mouseenter="scaleButton"
+              @mouseleave="resetButtonScale"
+              @focusin="scaleButton"
+              @focusout="resetButtonScale"
+              @click="closeModal">
+              Close
+            </button>
+          </div>
+        </DialogPanel>
       </div>
     </Dialog>
   </TransitionRoot>
@@ -61,16 +49,85 @@
 
 <script setup lang="ts">
 import {
+  ref, onMounted, defineProps, defineEmits, watch,
+} from 'vue';
+import {
   TransitionRoot,
   Dialog,
-  TransitionChild,
   DialogPanel,
   DialogTitle,
 } from '@headlessui/vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import AOS from 'aos';
+import gsap from 'gsap';
+import vuePdfEmbed from 'vue-pdf-embed';
 
-const props = defineProps<{ isModalOpen: boolean; source: string }>();
+const props = defineProps({
+  isModalOpen: {
+    type: Boolean,
+    required: true,
+  },
+  source: {
+    type: String,
+    required: true,
+  },
+});
 
 const emit = defineEmits(['closeModal']);
 
-const closeModal = () => emit('closeModal');
+const closeModal = () => {
+  emit('closeModal');
+};
+
+onMounted(() => {
+  AOS.init();
+
+  watch(() => props.isModalOpen, (newValue: boolean) => {
+    if (newValue) {
+      const modalContainer = document.getElementById('sponsorship-modal');
+      const pdfContainer = document.getElementById('pdf-container');
+
+      // Scroll fade animation
+      gsap.fromTo(modalContainer, {
+        opacity: 0,
+        y: 50,
+      }, {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: 'racingBounce',
+      });
+
+      gsap.fromTo(pdfContainer, {
+        opacity: 0,
+        y: 50,
+      }, {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: 'racingBounce',
+      });
+    }
+  });
+});
+
+const scaleButton = (event) => {
+  gsap.to(event.target, { scale: 1.05, duration: 0.2 });
+};
+
+const resetButtonScale = (event) => {
+  gsap.to(event.target, { scale: 1, duration: 0.2 });
+};
 </script>
+
+<style scoped>
+.modal-open {
+  overflow: hidden;
+}
+
+/* Custom styles for vue-pdf-embed */
+.vue-pdf-embed .vue-pdf-embed__pdf {
+  max-height: 80vh;
+  /* Maximum height for the PDF */
+}
+</style>

@@ -1,13 +1,21 @@
 <template>
-  <!-- Main container -->
   <div
-    class="relative min-h-screen h-fit isolate overflow-hidden flex justify-center items-center bg-gray-900 text-white">
-    <div class="relative min-h-full max-w-7xl w-full p-8">
-      <!-- Section title and view packet link -->
-      <div class="flex flex-col items-center space-y-6">
-        <h2 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl" data-title>Meet Our Sponsors
-        </h2>
-        <a class="underline hover:text-gray-300" @click="openModal" :href="'#'">View Our Sponsorship Packet</a>
+    class="relative min-h-screen isolate overflow-hidden flex flex-col items-center bg-stone-900 text-stone-100"
+    :style="{ paddingTop: headerHeight + 'px' }">
+    <div class="flex flex-col items-center w-full px-8 pb-8 max-w-7xl">
+
+      <!-- Title Section -->
+      <div class="p-8 w-full max-w-7xl text-center" data-aos="fade-down" data-aos-duration="1000">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gradient mb-4">
+          MEET OUR SPONSORS
+        </h1>
+        <p class="text-lg sm:text-xl md:text-2xl text-stone-300">
+          Our sponsors make our success possible.
+        </p>
+        <button type="button" @click="openModal" class="mt-8 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-stone-100 bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400">
+          <FontAwesomeIcon icon="file-pdf" class="mr-2" />
+          Sponsorship Packet
+        </button>
       </div>
 
       <!-- Sponsor card grid -->
@@ -20,13 +28,15 @@
       <!-- Modal for viewing sponsorship packet -->
       <SponsorshipModal :isModalOpen="isModalOpen" @closeModal="closeModal" :source="pdfSource" />
     </div>
-  </div></template>
+  </div>
+</template>
 
 <script async setup lang="ts">
 import {
   onMounted, ref, type Ref,
 } from 'vue';
 import { gsap } from 'gsap';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import PDF from '../assets/sponsorship_packet2023.pdf';
 import SponsorCard from '../components/SponsorCard.vue';
 import SponsorshipModal from '../components/SponsorshipModal.vue';
@@ -392,7 +402,15 @@ sponsors.value = [
   },
 ];
 
+const headerHeight = ref(0); // Ref to store the height of the UniversalHeader
+
 onMounted(() => {
+  // Calculate the height of the UniversalHeader
+  const header = document.querySelector('header'); // Assuming your UniversalHeader has a <header> tag or you need to adjust the selector based on your actual header element
+  if (header) {
+    headerHeight.value = header.offsetHeight; // Get the outer height of the header
+  }
+
   // Dynamically update page title
   const titles = document.querySelectorAll('[data-title]');
 
@@ -424,7 +442,7 @@ onMounted(() => {
   const tl = gsap.timeline({
     defaults: {
       duration: 0.5,
-      ease: 'bounce.out',
+      ease: 'racingBounce',
     },
   });
 
@@ -435,16 +453,10 @@ onMounted(() => {
     autoAlpha: 1,
     y: 0,
     stagger: {
-      each: 0.05,
+      each: 0.1,
       grid: 'auto',
-      from: 'random',
-      amount: 0.5,
-    },
-    // Slight randomness to the start time of each animation
-    onStart: () => {
-      gsap.set(cards, {
-        delay: gsap.utils.random(0, 0.1), // Random delay for each card
-      });
+      from: 'edges',
+      amount: 1,
     },
   });
 });
@@ -456,85 +468,5 @@ onMounted(() => {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-}
-
-.bg-diamond { /* Diamond background */
-  @apply bg-gradient-to-r from-red-600 to-red-800;
-}
-
-.ring-diamond { /* Diamond ring */
-  @apply ring-4 ring-red-600;
-}
-
-.badge-diamond { /* Diamond badge */
-  @apply opacity-100 text-blue-200;
-}
-
-.text-diamond { /* Diamond text */
-  @apply text-stone-100;
-}
-
-.bg-platinum { /* Platinum background */
-  @apply bg-gradient-to-r from-orange-500 to-orange-700;
-}
-
-.ring-platinum { /* Platinum ring */
-  @apply ring-4 ring-orange-600;
-}
-
-.badge-platinum { /* Platinum badge */
-  @apply opacity-100 text-zinc-200;
-}
-
-.text-platinum { /* Platinum text */
-  @apply text-stone-100;
-}
-
-.bg-gold { /* Gold background */
-  @apply bg-gradient-to-r from-yellow-500 to-yellow-700;
-}
-
-.ring-gold { /* Gold ring */
-  @apply ring-4 ring-yellow-500;
-}
-
-.badge-gold { /* Gold badge */
-  @apply opacity-100 text-yellow-200;
-}
-
-.text-gold { /* Gold text */
-  @apply text-stone-100;
-}
-
-.bg-silver { /* Silver background */
-  @apply bg-gradient-to-r from-gray-400 to-gray-600;
-}
-
-.ring-silver { /* Silver ring */
-  @apply ring-4 ring-gray-500;
-}
-
-.badge-silver { /* Silver badge */
-  @apply opacity-100 text-gray-200;
-}
-
-.text-silver { /* Silver text */
-  @apply text-stone-100;
-}
-
-.bg-bronze { /* Bronze background */
-  @apply bg-gradient-to-r from-gray-600 to-gray-800;
-}
-
-.ring-bronze { /* Bronze ring */
-  @apply ring-4 ring-gray-700;
-}
-
-.badge-bronze { /* Bronze badge */
-  @apply opacity-100 text-gray-200;
-}
-
-.text-bronze { /* Bronze text */
-  @apply text-stone-100;
 }
 </style>

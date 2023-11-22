@@ -21,6 +21,8 @@ import AOS from 'aos';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
+import { CustomEase } from 'gsap/CustomEase';
+import { CustomBounce } from 'gsap/CustomBounce';
 import { useRouter } from 'vue-router';
 import UniversalHeader from '@/components/UniversalHeader.vue';
 import UniversalFooter from '@/components/UniversalFooter.vue';
@@ -30,6 +32,7 @@ let smoother: ScrollSmoother;
 
 onMounted(async () => {
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+  gsap.registerPlugin(CustomEase, CustomBounce);
   await nextTick(); // Ensure the DOM is updated
 
   const initializeSmoother = () => {
@@ -69,6 +72,12 @@ onMounted(async () => {
     nextTick().then(() => {
       initializeSmoother();
     });
+  });
+
+  CustomBounce.create('racingBounce', {
+    strength: 0.5,
+    endAtStart: false,
+    squash: 3,
   });
 });
 

@@ -56,19 +56,11 @@ class AuthController extends Controller
 
         // JSON-API Spec Compliant Response
         return response()->json([
-            'data' => [
-                'type' => 'users',
-                'id' => $user->id,
-                'attributes' => [
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'created_at' => $user->created_at->format('Y-m-d'),
-                    'updated_at' => $user->updated_at->format('Y-m-d'),
-                    'access_token' => $token,
-                    'token_type' => 'Bearer',
-                ],
-            ],
-        ]);
+          'data' => [
+            'type' => 'users',
+            'message' => 'User registered successfully',
+          ]
+        ], 201);
     }
 
     public function logout(Request $request)
@@ -76,8 +68,11 @@ class AuthController extends Controller
         $request->user()->currentAccessToken()->delete();
 
         return response()->json([
-            'message' => 'Logged out',
-        ]);
+            'data' => [
+                'type' => 'users',
+                'message' => 'User logged out successfully',
+            ],
+        ], 200);
     }
 
     public function me(Request $request)

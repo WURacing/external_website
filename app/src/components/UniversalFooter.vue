@@ -1,11 +1,7 @@
 <template>
   <!-- Footer shaped with Tailwind CSS and animated with AOS and GSAP -->
-  <footer
-    class="bg-stone-900 border-t-4 border-stone-800 text-stone-200"
-    data-aos="fade-up"
-    aria-labelledby="footer-heading"
-    id="footer"
-  >
+  <footer class="bg-gray-900 border-t-4 border-gray-800 text-gray-200" data-aos="fade-up" aria-labelledby="footer-heading"
+    id="footer">
     <h2 id="footer-heading" class="sr-only">Footer</h2>
 
     <!-- Main Content -->
@@ -22,10 +18,14 @@
         <div class="grid grid-cols-3 gap-4 sm:grid-cols-5 align-middle justify-center md:justify-end">
           <!-- Individual social links with delayed AOS animation -->
           <SocialLink :icon="['fas', 'envelope']" href="mailto:wuracing@gmail.com" label="Email" delay="100" />
-          <SocialLink :icon="['fab', 'facebook']" href="https://www.facebook.com/WashURacing/" label="Facebook" delay="200" />
-          <SocialLink :icon="['fab', 'instagram']" href="https://www.instagram.com/washuracing/?hl=en" label="Instagram" delay="400" />
-          <SocialLink :icon="['fab', 'youtube']" href="https://www.youtube.com/channel/UCDRDocUskdc_wHeQetclQJQ" label="YouTube" delay="300" />
-          <SocialLink :icon="['fab', 'linkedin-in']" href="https://www.linkedin.com/company/wash-u-racing/" label="LinkedIn" delay="500" />
+          <SocialLink :icon="['fab', 'facebook']" href="https://www.facebook.com/WashURacing/" label="Facebook"
+            delay="200" />
+          <SocialLink :icon="['fab', 'instagram']" href="https://www.instagram.com/washuracing/?hl=en" label="Instagram"
+            delay="400" />
+          <SocialLink :icon="['fab', 'youtube']" href="https://www.youtube.com/channel/UCDRDocUskdc_wHeQetclQJQ"
+            label="YouTube" delay="300" />
+          <SocialLink :icon="['fab', 'linkedin-in']" href="https://www.linkedin.com/company/wash-u-racing/"
+            label="LinkedIn" delay="500" />
         </div>
       </div>
 

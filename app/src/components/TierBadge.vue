@@ -1,5 +1,5 @@
 <template>
-  <span class="inline-block py-1 px-3 text-sm font-semibold rounded-full text-stone-100" :class="tierGradient">
+  <span class="inline-block py-1 px-3 text-sm font-semibold rounded-full text-gray-100" :class="tierGradient">
     {{ tier }}
   </span>
 </template>
@@ -19,7 +19,7 @@ const tierGradient = computed(() => {
     case 'Gold':
       return 'bg-gradient-to-r from-yellow-400 to-orange-500';
     case 'Silver':
-      return 'bg-gradient-to-r from-stone-400 to-stone-500';
+      return 'bg-gradient-to-r from-gray-400 to-gray-500';
     case 'Bronze':
       return 'bg-gradient-to-r from-orange-400 to-red-500';
     default:

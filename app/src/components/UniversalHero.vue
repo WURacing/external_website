@@ -1,20 +1,10 @@
 <template>
-  <div
-    class="relative min-h-screen isolate overflow-hidden pt-14"
-  >
+  <div class="relative min-h-screen isolate overflow-hidden pt-14">
     <!--
       Background video
     -->
-    <video
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="auto"
-      poster="../assets/driving.jpg"
-      class="absolute inset-0 h-full object-top object-cover -z-10 filter opacity-20 scale-[1.5]"
-      data-speed="auto"
-    >
+    <video autoplay muted loop playsinline preload="auto" poster="../assets/driving.jpg"
+      class="absolute inset-0 h-full object-top object-cover -z-10 filter opacity-20 scale-[1.5]" data-speed="auto">
       <source src="../assets/testing-emerson.mov" type="video/mp4" />
     </video>
 
@@ -43,8 +33,7 @@
             76.1% 97.7%,
             74.1% 44.1%
           );
-        "
-      />
+        " />
     </div>
 
     <!--
@@ -56,13 +45,9 @@
       -->
       <div class="hidden sm:mb-8 sm:flex sm:justify-center">
         <div
-          class="relative rounded-full px-3 py-1 text-sm leading-6 text-stone-400 ring-1 ring-stone-100/10 hover:ring-stone-100/20"
-        >
+          class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-gray-100/10 hover:ring-gray-100/20">
           <slot name="announcement" />
-          <a
-            :href="$props.announcementLink"
-            class="font-semibold text-stone-100"
-          >
+          <a :href="$props.announcementLink" class="font-semibold text-gray-100">
             <span class="absolute inset-0" aria-hidden="true" />
             <slot name="announcement-link" />
             <span aria-hidden="true"> &rarr; </span>
@@ -77,9 +62,7 @@
         <!--
           Heading text
         -->
-        <h1
-          class="text-5xl font-extrabold tracking-tight text-stone-100 md:text-5xl lg:text-6xl text-gradient"
-        >
+        <h1 class="text-5xl font-extrabold tracking-tight text-gray-100 md:text-5xl lg:text-6xl text-gradient">
           <slot name="heading" />
         </h1>
 
@@ -87,9 +70,7 @@
           Description text
         -->
         <!-- Responsive text sizing -->
-        <p
-          class="mt-6 text-xl leading-8 text-stone-300 lg:text-2xl"
-        >
+        <p class="mt-6 text-xl leading-8 text-gray-300 lg:text-2xl">
           <slot name="description" />
         </p>
 
@@ -97,17 +78,12 @@
           CTA
         -->
         <div class="mt-10 flex items-center justify-center gap-x-6">
-          <a
-            :href="$props.ctaButtonLink"
-            class="rounded-md bg-red-500 px-3.5 py-2.5 text-sm font-semibold text-stone-100 shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-400"
-          >
+          <a :href="$props.ctaButtonLink"
+            class="rounded-md bg-red-500 px-3.5 py-2.5 text-sm font-semibold text-gray-100 shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-400">
             <slot name="cta-button" />
           </a>
 
-          <a
-            :href="$props.ctaLink"
-            class="text-sm font-semibold leading-6 text-stone-100"
-          >
+          <a :href="$props.ctaLink" class="text-sm font-semibold leading-6 text-gray-100">
             <slot name="cta-link" />
             <span aria-hidden="true"> &rarr; </span>
           </a>
@@ -120,8 +96,7 @@
     -->
     <div
       class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-      aria-hidden="true"
-    >
+      aria-hidden="true">
       <div
         class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-red-500 to-red-800 opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
         style="
@@ -143,8 +118,7 @@
             76.1% 97.7%,
             74.1% 44.1%
           );
-        "
-      />
+        " />
     </div>
   </div>
 </template>

@@ -23,6 +23,7 @@
     "@vitejs/plugin-vue": "^4.5.0",
     "@vue/eslint-config-airbnb": "^7.0.0",
     "aos": "^2.3.4",
+    "axios": "^1.6.2",
     "gsap": "npm:@gsap/business@^3.12.2",
     "pinia": "^2.1.6",
     "tailwind-children": "^0.5.0",

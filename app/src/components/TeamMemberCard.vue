@@ -1,19 +1,15 @@
 <template>
   <div
-    class="team-member-card relative rounded-lg overflow-hidden shadow-lg transition-transform hover:shadow-2xl bg-stone-800 group"
-    data-aos="zoom-in"
-    @mouseenter="animateCard"
-    @mouseleave="resetCardAnimation"
-    @focusin="animateCard"
-    @focusout="resetCardAnimation"
-  >
+    class="team-member-card relative rounded-lg overflow-hidden shadow-lg transition-transform hover:shadow-2xl bg-gray-800 group"
+    data-aos="zoom-in" @mouseenter="animateCard" @mouseleave="resetCardAnimation" @focusin="animateCard"
+    @focusout="resetCardAnimation">
     <!-- Placeholder for member image -->
     <div class="bg-cover bg-center h-48 w-full" :style="{ backgroundImage: 'url(' + member.image + ')' }" />
 
     <!-- Member Info -->
     <div class="p-4 text-center">
-      <h3 class="text-xl font-bold text-stone-100 mb-2">{{ member.name }}</h3>
-      <p class="text-md text-stone-300">{{ member.role }}</p>
+      <h3 class="text-xl font-bold text-gray-100 mb-2">{{ member.name }}</h3>
+      <p class="text-md text-gray-300">{{ member.role }}</p>
     </div>
   </div>
 </template>

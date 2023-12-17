@@ -7,14 +7,14 @@
 
   /* Optimize for legibility */
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: stonescale;
+  -moz-osx-font-smoothing: grayscale;
 
   /* Optimize for legibility at small sizes */
   text-rendering: optimizeLegibility;
 }
 
 body {
-  @apply bg-stone-900;
+  @apply bg-gray-900;
 }
 
 ::selection {

@@ -1,10 +1,7 @@
 <template>
-  <UniversalHero
-    bgsrc="../assets/hero-bg.jpg"
-    announcement-link="https://www.sae.org/attend/student-events/formula-sae-michigan"
-    cta-button-link="/about"
-    cta-link="/team"
-  >
+  <UniversalHero bgsrc="../assets/hero-bg.jpg"
+    announcement-link="https://www.sae.org/attend/student-events/formula-sae-michigan" cta-button-link="/about"
+    cta-link="/team">
     <template #announcement>
       <b>{{ countdown }}</b> until Formula SAE Michigan 2024!
     </template>
@@ -31,23 +28,16 @@
     </template>
   </UniversalHero>
 
-  <div
-    class="relative min-h-fit w-full isolate overflow-hidden border-t-4 border-stone-800"
-  >
+  <div class="relative min-h-fit w-full isolate overflow-hidden border-t-4 border-gray-800">
     <div
       class="mx-auto w-full py-8 sm:py-16 lg:py-24 px-8 sm:px-16 md:px-32 lg:px-64 xl:px-96 space-y-6 sm:space-y-8 text-center"
-      data-aos="fade-up"
-    >
-      <h2
-        class="text-2xl tracking-tight text-stone-100 sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gradient"
-        data-title
-      >
+      data-aos="fade-up">
+      <h2 class="text-2xl tracking-tight text-gray-100 sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gradient"
+        data-title>
         WHAT WE DO
       </h2>
 
-      <p
-        class="text-lg leading-8 text-stone-300 sm:text-xl md:text-2xl lg:text-3xl"
-      >
+      <p class="text-lg leading-8 text-gray-300 sm:text-xl md:text-2xl lg:text-3xl">
         Each year, we travel to Michigan International Speedway to compete
         against over 100 other student teams from around the world. Judged by
         industry professionals and track-tested against other teams' efforts,
@@ -57,29 +47,19 @@
     </div>
   </div>
 
-  <div
-    class="relative min-h-fit w-full isolate overflow-hidden border-t-4 border-stone-800"
-  >
-    <img
-      src="../assets/machineshop-1.jpg?w=700&format=webp&as=src"
-      alt="Working in the machine shop"
+  <div class="relative min-h-fit w-full isolate overflow-hidden border-t-4 border-gray-800">
+    <img src="../assets/machineshop-1.jpg?w=700&format=webp&as=src" alt="Working in the machine shop"
       class="absolute inset-0 -z-10 filter opacity-20 scale-[1.5] object-cover object-center w-full h-full"
-      data-speed="clamp(auto)"
-    >
+      data-speed="clamp(auto)">
     <div
       class="mr-auto w-full py-8 sm:py-16 lg:py-24 px-8 sm:px-16 md:px-32 lg:px-64 xl:px-96 space-y-6 sm:space-y-8 text-left"
-      data-aos="fade-right"
-    >
-      <h2
-        class="text-2xl tracking-tight text-stone-100 sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gradient"
-        data-title
-      >
+      data-aos="fade-right">
+      <h2 class="text-2xl tracking-tight text-gray-100 sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gradient"
+        data-title>
         DESIGN.
       </h2>
 
-      <p
-        class="text-lg leading-8 text-stone-300 sm:text-xl md:text-2xl lg:text-3xl"
-      >
+      <p class="text-lg leading-8 text-gray-300 sm:text-xl md:text-2xl lg:text-3xl">
         From materials science testing on our carbon-fiber suspension linkages, to our sand-casted
         custom oil pan, to our beautifully crafted cockpit and driver controls systems, all
         our designs must live up to our most stringent standards.
@@ -91,23 +71,16 @@
     </div>
   </div>
 
-  <div
-    class="relative min-h-fit w-full isolate overflow-hidden border-t-4 border-stone-800"
-  >
+  <div class="relative min-h-fit w-full isolate overflow-hidden border-t-4 border-gray-800">
     <div
       class="mr-auto w-full py-8 sm:py-16 lg:py-24 px-8 sm:px-16 md:px-32 lg:px-64 xl:px-96 space-y-6 sm:space-y-8 text-right"
-      data-aos="fade-left"
-    >
-      <h2
-        class="text-2xl tracking-tight text-stone-100 sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gradient"
-        data-title
-      >
+      data-aos="fade-left">
+      <h2 class="text-2xl tracking-tight text-gray-100 sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gradient"
+        data-title>
         BUILD.
       </h2>
 
-      <p
-        class="text-lg leading-8 text-stone-300 sm:text-xl md:text-2xl lg:text-3xl"
-      >
+      <p class="text-lg leading-8 text-gray-300 sm:text-xl md:text-2xl lg:text-3xl">
         Thanks to our incredible manufacturing team, we have been able to consistently
         increase the quality and consistency of the parts we make.
         <br />
@@ -119,35 +92,21 @@
     </div>
   </div>
 
-  <div
-    class="relative min-h-fit w-full isolate overflow-hidden border-t-4 border-stone-800"
-  >
-    <video
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="auto"
-      poster="../assets/driving.jpg"
+  <div class="relative min-h-fit w-full isolate overflow-hidden border-t-4 border-gray-800">
+    <video autoplay muted loop playsinline preload="auto" poster="../assets/driving.jpg"
       class="absolute h-full w-full inset-0 -z-10 filter opacity-20 scale-[1.5] object-cover object-center"
-      data-speed="auto"
-    >
+      data-speed="auto">
       <source src="../assets/testing-stcharlesfamilyarena.mov" type="video/mp4" />
     </video>
     <div
       class="ml-auto w-full py-8 sm:py-16 lg:py-24 px-8 sm:px-16 md:px-32 lg:px-64 xl:px-96 space-y-6 sm:space-y-8 text-left"
-      data-aos="fade-right"
-    >
-      <h2
-        class="text-2xl tracking-tight text-stone-100 sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gradient"
-        data-title
-      >
+      data-aos="fade-right">
+      <h2 class="text-2xl tracking-tight text-gray-100 sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gradient"
+        data-title>
         TEST.
       </h2>
 
-      <p
-        class="text-lg leading-8 text-stone-300 sm:text-xl md:text-2xl lg:text-3xl"
-      >
+      <p class="text-lg leading-8 text-gray-300 sm:text-xl md:text-2xl lg:text-3xl">
         Ultimately, our designs don't matter unless they work as intended.
         We test and validate our designs using an astounding array of sensors,
         including brake temperature and pressure sensors, strain gauges, 3-axis gyroscopes,

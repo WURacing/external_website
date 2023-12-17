@@ -1,17 +1,8 @@
 <template>
-  <a
-    :href="href"
-    class="transition-colors duration-300"
-    data-aos="zoom-in"
-    :data-aos-delay="delay"
-    :aria-label="label"
-    @mouseenter="animate"
-    @mouseleave="resetAnimation"
-    @focusin="animate"
-    @focusout="resetAnimation"
-  >
+  <a :href="href" class="transition-colors duration-300" data-aos="zoom-in" :data-aos-delay="delay" :aria-label="label"
+    @mouseenter="animate" @mouseleave="resetAnimation" @focusin="animate" @focusout="resetAnimation">
     <span class="sr-only">{{ label }}</span>
-    <font-awesome-icon :icon="icon" size="2x" class="text-stone-200 hover:text-stone-100 align-middle justify-between" />
+    <font-awesome-icon :icon="icon" size="2x" class="text-gray-200 hover:text-gray-100 align-middle justify-between" />
   </a>
 </template>
 

@@ -24,6 +24,7 @@ import {
   faBars,
   faEnvelope,
   faTimes,
+  faFilePdf,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -33,6 +34,7 @@ import {
   faLinkedinIn,
 } from '@fortawesome/free-brands-svg-icons';
 
+import axios from 'axios';
 import App from './App.vue';
 import router from './router/index.ts';
 
@@ -48,9 +50,19 @@ library.add(
   faYoutube,
   faLinkedinIn,
   faTimes,
+  faFilePdf,
 );
 
 const app = createApp(App);
+
+app.config.globalProperties.$axios = axios;
+axios.defaults.baseURL = 'http://wuracing-api.test/api/v1/';
+
+// Request interceptor
+axios.interceptors.request.use((config) => config, (error) => Promise.reject(error));
+
+// Response interceptor
+axios.interceptors.response.use((response) => response, (error) => Promise.reject(error));
 
 app.use(createPinia());
 app.use(router);

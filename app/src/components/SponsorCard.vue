@@ -1,15 +1,10 @@
 <template>
-  <a
-    data-aos="fade-up"
-    :href="sponsor.link"
-    class="sponsor-card block rounded-lg overflow-hidden shadow-lg transition-transform hover:shadow-2xl focus:outline-none bg-gradient-to-r from-stone-800 to-stone-900"
-    @mouseenter="animate"
-    @mouseleave="resetAnimation"
-    @focusin="animate"
-    @focusout="resetAnimation">
+  <a data-aos="fade-up" :href="sponsor.link"
+    class="sponsor-card block rounded-lg overflow-hidden shadow-lg transition-transform hover:shadow-2xl focus:outline-none bg-gradient-to-r from-gray-800 to-gray-900"
+    @mouseenter="animate" @mouseleave="resetAnimation" @focusin="animate" @focusout="resetAnimation">
     <div class="flex justify-between items-center p-4 h-full space-x-4">
       <div class="flex flex-row items-center justify-center">
-        <h3 class="font-bold text-lg text-stone-100">{{ sponsor.name }}</h3>
+        <h3 class="font-bold text-lg text-gray-100">{{ sponsor.name }}</h3>
       </div>
 
       <TierBadge :tier="sponsor.tier" />

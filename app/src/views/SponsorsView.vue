@@ -1,6 +1,5 @@
 <template>
-  <div
-    class="relative min-h-screen isolate overflow-hidden flex flex-col items-center bg-stone-900 text-stone-100"
+  <div class="relative min-h-screen isolate overflow-hidden flex flex-col items-center bg-gray-900 text-gray-100"
     :style="{ paddingTop: headerHeight + 'px' }">
     <div class="flex flex-col items-center w-full px-8 pb-8 max-w-7xl">
 
@@ -9,19 +8,18 @@
         <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gradient mb-4">
           MEET OUR SPONSORS
         </h1>
-        <p class="text-lg sm:text-xl md:text-2xl text-stone-300">
+        <p class="text-lg sm:text-xl md:text-2xl text-gray-300">
           Our sponsors make our success possible.
         </p>
-        <button type="button" @click="openModal" class="mt-8 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-stone-100 bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400">
+        <button type="button" @click="openModal"
+          class="mt-8 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-gray-100 bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400">
           <FontAwesomeIcon icon="file-pdf" class="mr-2" />
           Sponsorship Packet
         </button>
       </div>
 
       <!-- Sponsor card grid -->
-      <div
-        class="mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8"
-      >
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
         <SponsorCard v-for="sponsor in sponsors" :key="sponsor.id" :sponsor="sponsor" />
       </div>
 
@@ -51,356 +49,58 @@ const isModalOpen = ref(false);
 const pdfSource = ref(PDF);
 
 // Sponsors
+const prevPage: Ref<String | null> = ref(null);
+const currentPage: Ref<number | null> = ref(null);
+const nextPage: Ref<String | null> = ref(null);
+const totalPages: Ref<number | null> = ref(null);
 const sponsors: Ref<Sponsor[]> = ref([]);
+
+// Sample:
+// {
+//   "current_page": 1,
+//     "data": [
+//       {
+//         "id": 4,
+//         "name": "Boeing",
+//         "tier": "Diamond",
+//         "link": "https://www.boeing.com/",
+//         "image_path": "sponsors/boeing.jpg",
+//         "created_at": "2023-12-09T21:57:19.000000Z",
+//         "updated_at": "2023-12-09T22:00:22.000000Z"
+//       }
+//     ],
+//       "first_page_url": "http://wuracing-api.test/api/v1/sponsors?page=1",
+//         "from": 1,
+//           "last_page": 1,
+//             "last_page_url": "http://wuracing-api.test/api/v1/sponsors?page=1",
+//               "links": [
+//                 {
+//                   "url": null,
+//                   "label": "&laquo; Previous",
+//                   "active": false
+//                 },
+//                 {
+//                   "url": "http://wuracing-api.test/api/v1/sponsors?page=1",
+//                   "label": "1",
+//                   "active": true
+//                 },
+//                 {
+//                   "url": null,
+//                   "label": "Next &raquo;",
+//                   "active": false
+//                 }
+//               ],
+//                 "next_page_url": null,
+//                   "path": "http://wuracing-api.test/api/v1/sponsors",
+//                     "per_page": 15,
+//                       "prev_page_url": null,
+//                         "to": 1,
+//                           "total": 1
+// }
 
 // Methods for modal state management
 const openModal = () => (isModalOpen.value = true);
 const closeModal = () => (isModalOpen.value = false);
-
-sponsors.value = [
-  {
-    id: 'boeing',
-    name: 'Boeing',
-    tier: 'Diamond',
-    link: 'https://www.boeing.com/',
-  },
-  {
-    id: 'anysys',
-    name: 'Ansys',
-    tier: 'Diamond',
-
-    link: 'https://www.ansys.com/',
-  },
-  {
-    id: 'evonik',
-    name: 'Evonik',
-    tier: 'Diamond',
-
-    link: 'https://www.evonik.com/en',
-  },
-  {
-    id: 'spartan',
-    name: 'Spartan Light Metal Products',
-    tier: 'Diamond',
-
-    link: 'https://www.spartanlmp.com/',
-  },
-  {
-    id: 'washu-student-union',
-    name: 'WashU Student Union',
-    tier: 'Diamond',
-
-    link: 'https://su.wustl.edu/',
-  },
-  {
-    id: 'solidworks',
-    name: 'Solidworks',
-    tier: 'Diamond',
-
-    link: 'https://www.solidworks.com/',
-  },
-  {
-    id: 'atlassian',
-    name: 'Atlassian',
-    tier: 'Diamond',
-
-    link: 'https://www.atlassian.com/',
-  },
-  {
-    id: 'altium',
-    name: 'Altium',
-    tier: 'Platinum',
-
-    link: 'https://www.altium.com/',
-  },
-  {
-    id: 'siemens',
-    name: 'Siemens',
-    tier: 'Platinum',
-
-    link: 'https://www.siemens.com/us/en.html',
-  },
-  {
-    id: 'vi-grade',
-    name: 'VI-Grade',
-    tier: 'Platinum',
-
-    link: 'https://www.vi-grade.com/en/',
-  },
-  {
-    id: 'gamma-technologies',
-    name: 'Gamma Technologies',
-    tier: 'Platinum',
-
-    link: 'https://www.gtisoft.com/',
-  },
-  {
-    id: 'emerson',
-    name: 'Emerson',
-    tier: 'Gold',
-
-    link: 'https://www.emerson.com/en-us',
-  },
-  {
-    id: 'mohela',
-    name: 'MOHELA',
-    tier: 'Gold',
-
-    link: 'https://www.mohela.com/',
-  },
-  {
-    id: '3dconnexion',
-    name: '3DConnexion',
-    tier: 'Gold',
-
-    link: 'https://www.3dconnexion.com/',
-  },
-  {
-    id: 'zoltek',
-    name: 'Zoltek',
-    tier: 'Gold',
-
-    link: 'https://zoltek.com/',
-  },
-  {
-    id: 'oz-racing',
-    name: 'OZ Racing',
-    tier: 'Silver',
-
-    link: 'https://www.ozracing.com/',
-  },
-  {
-    id: 'hoosier',
-    name: 'Hoosier',
-    tier: 'Silver',
-
-    link: 'https://www.hoosiertire.com/',
-  },
-  {
-    id: 'bp-fab',
-    name: 'BP Fab',
-    tier: 'Silver',
-
-    link: 'https://www.bpfab.com/',
-  },
-  {
-    id: 'texense',
-    name: 'Texense',
-    tier: 'Silver',
-
-    link: 'https://www.texense.com/',
-  },
-  {
-    id: 'rapidharness',
-    name: 'RapidHarness',
-    tier: 'Silver',
-
-    link: 'https://rapidharness.com/',
-  },
-  {
-    id: 'fpco',
-    name: 'FPCO',
-    tier: 'Silver',
-
-    link: 'https://www.fpco.com/',
-  },
-  {
-    id: 'zimmeman',
-    name: 'Zimmeman',
-    tier: 'Silver',
-
-    link: 'https://www.zimmermanhonda.com/',
-  },
-  {
-    id: 'skf',
-    name: 'SKF',
-    tier: 'Silver',
-
-    link: 'https://www.skf.com/us',
-  },
-  {
-    id: 'aurora-bearing-company',
-    name: 'Aurora Bearing Company',
-    tier: 'Silver',
-
-    link: 'https://www.aurorabearing.com/',
-  },
-  {
-    id: 'washington-university-in-st-louis-james-mckelvey-school-of-engineering',
-    name: 'James McKelvey School of Engineering',
-    tier: 'Silver',
-
-    link: 'https://engineering.wustl.edu/',
-  },
-  {
-    id: 'the-womens-society-of-washington-university',
-    name: 'The Women\'s Society of Washington University',
-    tier: 'Silver',
-
-    link: 'https://womensociety.wustl.edu/',
-  },
-  {
-    id: 'archway-anodize',
-    name: 'Archway Anodize',
-    tier: 'Silver',
-
-    link: 'https://www.archwayanodize.com/',
-  },
-  {
-    id: 'gateway-motorsports-park',
-    name: 'Gateway Motorsports Park',
-    tier: 'Silver',
-
-    link: 'https://www.gatewaymsp.com/',
-  },
-  {
-    id: 'kartplex',
-    name: 'Kartplex',
-    tier: 'Silver',
-
-    link: 'https://www.gatewaykartplex.com/',
-  },
-  {
-    id: 'perficient',
-    name: 'Perficient',
-    tier: 'Bronze',
-
-    link: 'https://www.perficient.com/',
-  },
-  {
-    id: 'porsche-st-louis',
-    name: 'Porsche St. Louis',
-    tier: 'Bronze',
-
-    link: 'https://porschestlouis.com/',
-  },
-  {
-    id: 'syndicate-performance',
-    name: 'Syndicate Performance',
-    tier: 'Bronze',
-
-    link: 'https://syndicateperformance.com/',
-  },
-  {
-    id: 'wegner-motorsports',
-    name: 'Wegner Motorsports',
-    tier: 'Bronze',
-
-    link: 'https://wegnerautomotive.com/',
-  },
-  {
-    id: 'odum-performance',
-    name: 'Odum Performance',
-    tier: 'Bronze',
-
-    link: 'https://odumperformance.com/',
-  },
-  {
-    id: 'performance-electronics',
-    name: 'Performance Electronics',
-    tier: 'Bronze',
-
-    link: 'https://pe-ltd.com/',
-  },
-  {
-    id: 'pingel',
-    name: 'Pingel',
-    tier: 'Bronze',
-
-    link: 'https://pingelonline.com/',
-  },
-  {
-    id: 'tms-titanium',
-    name: 'TMS Titanium',
-    tier: 'Bronze',
-
-    link: 'https://tmstitanium.com/',
-  },
-  {
-    id: 'lmi-aerospace',
-    name: 'Lmi Aerospace',
-    tier: 'Bronze',
-
-    link: 'https://www.lmiaerospace.com/',
-  },
-  {
-    id: 'calspan',
-    name: 'Calspan',
-    tier: 'Bronze',
-
-    link: 'https://www.calspan.com/',
-  },
-  {
-    id: 'optimumg',
-    name: 'OptimumG',
-    tier: 'Bronze',
-
-    link: 'https://www.optimumg.com/',
-  },
-  {
-    id: 'denco-powder-coating',
-    name: 'Denco Powder Coating',
-    tier: 'Bronze',
-
-    link: 'https://dencopowdercoating.com/',
-  },
-  {
-    id: 'atl-aero-tec-laboratories',
-    name: 'ATL Aero Tec Laboratories',
-    tier: 'Bronze',
-
-    link: 'https://atlinc.com/',
-  },
-  {
-    id: 'msc-software',
-    name: 'MSC Software',
-    tier: 'Bronze',
-
-    link: 'https://www.mscsoftware.com/',
-  },
-  {
-    id: 'sauer-st-louis',
-    name: 'Sauer ET St. Louis',
-    tier: 'Bronze',
-
-    link: 'https://www.sauercompressors.com/',
-  },
-  {
-    id: 'clearwater-composites',
-    name: 'Clearwater Composites, LLC',
-    tier: 'Bronze',
-
-    link: 'https://clearwatercomposites.com/',
-  },
-  {
-    id: 'micro-measurements',
-    name: 'Micro Measurements',
-    tier: 'Bronze',
-
-    link: 'https://www.micro-measurements.com/',
-  },
-  {
-    id: 'busch',
-    name: 'Busch',
-    tier: 'Bronze',
-
-    link: 'https://www.busch.com/',
-  },
-  {
-    id: 'fibre-glast',
-    name: 'Fibre Glast',
-    tier: 'Bronze',
-
-    link: 'https://www.fibreglast.com/',
-  },
-  {
-    id: 'composite-envisions',
-    name: 'Composite Envisions',
-    tier: 'Bronze',
-
-    link: 'https://compositeenvisions.com/',
-  },
-];
 
 const headerHeight = ref(0); // Ref to store the height of the UniversalHeader
 
@@ -410,6 +110,14 @@ onMounted(() => {
   if (header) {
     headerHeight.value = header.offsetHeight; // Get the outer height of the header
   }
+
+  this?.$axios.get('/sponsors').then((response) => {
+    sponsors.value = response.data.data;
+    prevPage.value = response.data.prev_page_url;
+    currentPage.value = response.data.current_page;
+    nextPage.value = response.data.next_page_url;
+    totalPages.value = response.data.last_page;
+  });
 
   // Dynamically update page title
   const titles = document.querySelectorAll('[data-title]');

@@ -1,6 +1,7 @@
 <template>
-  <a data-aos="fade-up" :href="sponsor.link"
-    class="sponsor-card block rounded-lg overflow-hidden shadow-lg transition-transform hover:shadow-2xl focus:outline-none bg-gradient-to-r from-stone-800 to-stone-900">
+  <a
+    :href="sponsor.link"
+    class="sponsor-card block transform transition duration-500 ease-in-out hover:scale-105 rounded-lg overflow-hidden shadow-lg bg-gradient-to-r from-stone-800 to-stone-900">
     <div class="flex justify-between items-center p-4 h-full space-x-4">
       <div class="flex flex-row items-center justify-center">
         <img :src="sponsor.imagePath" alt="Sponsor Logo" class="w-16 h-16 rounded-full mr-4">
@@ -23,10 +24,26 @@ import TierBadge from './TierBadge.vue';
 defineProps<{ sponsor: Sponsor }>();
 
 onMounted(() => {
+  gsap.fromTo(
+    '.sponsor-card',
+    {
+      opacity: 0,
+      y: 20,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      stagger: 0.1,
+      ease: 'power4.out',
+    },
+  );
+
   AOS.init({
-    duration: 800,
-    easing: 'ease-out-cubic',
+    once: true,
   });
+
+  AOS.refresh();
 });
 </script>
 

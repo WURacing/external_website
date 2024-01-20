@@ -1,12 +1,18 @@
 <template>
   <div
     class="relative min-h-screen isolate overflow-hidden flex flex-col items-center bg-stone-900 text-stone-100"
-    :style="{ paddingTop: headerHeight + 'px' }">
+    :style="{ paddingTop: headerHeight + 'px' }"
+  >
     <div class="flex flex-col items-center w-full px-8 pb-8 max-w-7xl">
-
       <!-- Title Section -->
-      <div class="p-8 w-full max-w-7xl text-center" data-aos="fade-down" data-aos-duration="1000">
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gradient mb-4">
+      <div
+        class="p-8 w-full max-w-7xl text-center"
+        data-aos="fade-down"
+        data-aos-duration="1000"
+      >
+        <h1
+          class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gradient mb-4"
+        >
           MEET OUR SPONSORS
         </h1>
         <p class="text-lg sm:text-xl md:text-2xl text-stone-300">
@@ -15,15 +21,25 @@
         <button
           type="button"
           @click="openModal"
-          class="mt-8 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-stone-100 bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400">
+          class="mt-8 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-stone-100 bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400"
+        >
           <FontAwesomeIcon icon="file-pdf" class="mr-2" />
           Sponsorship Packet
         </button>
       </div>
 
       <!-- Sponsor card grid -->
-      <div class="mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-        <SponsorCard v-for="sponsor in sponsorsData.data" :key="sponsor.id" :sponsor="sponsor" class="sponsor-card" />
+      <div
+        class="mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 animate-fadeIn w-full max-w-7xl"
+      >
+        <SponsorCard
+          v-for="sponsor in sponsorsData.data"
+          :key="sponsor.id"
+          :sponsor="sponsor"
+          :class="`sponsor-card ${getGridSpanClass(
+            sponsor.tier,
+          )} transition-transform duration-500 hover:scale-105`"
+        />
       </div>
 
       <!-- Pagination -->
@@ -32,35 +48,45 @@
           @click="prevPage"
           type="button"
           :disabled="!sponsorsData.prev_page_url"
-          class="px-4 py-2 rounded-md bg-stone-800 text-stone-100 hover:bg-stone-700 disabled:opacity-50">Prev</button>
-        <p class="text-stone-100">Page {{ sponsorsData.current_page }} of {{ sponsorsData.last_page }}</p>
+          class="px-4 py-2 rounded-md bg-stone-800 text-stone-100 hover:bg-stone-700 disabled:opacity-50"
+        >
+          Prev
+        </button>
+        <p class="text-stone-100">
+          Page {{ sponsorsData.current_page }} of {{ sponsorsData.last_page }}
+        </p>
         <button
           @click="nextPage"
           type="button"
           :disabled="!sponsorsData.next_page_url"
-          class="px-4 py-2 rounded-md bg-stone-800 text-stone-100 hover:bg-stone-700 disabled:opacity-50">Next</button>
+          class="px-4 py-2 rounded-md bg-stone-800 text-stone-100 hover:bg-stone-700 disabled:opacity-50"
+        >
+          Next
+        </button>
       </div>
 
       <!-- Modal for viewing sponsorship packet -->
-      <SponsorshipModal :isModalOpen="isModalOpen" @closeModal="closeModal" :source="pdfSource" />
+      <SponsorshipModal
+        :isModalOpen="isModalOpen"
+        @closeModal="closeModal"
+        :source="pdfSource"
+      />
     </div>
   </div>
 </template>
 
 <script async setup lang="ts">
-import {
-  onMounted, ref, type Ref,
-} from 'vue';
+import { onMounted, ref, type Ref } from 'vue';
 import { gsap } from 'gsap';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import PDF from '../assets/sponsorship_packet2023.pdf';
 import SponsorCard from '../components/SponsorCard.vue';
 import SponsorshipModal from '../components/SponsorshipModal.vue';
-import {
-  type Sponsor,
-} from '../types/sponsors.ts';
+import { type Sponsor, type SponsorTier } from '../types/sponsors.ts';
 import makeBackendAPIRequest from '../services/axios.ts';
 import { type Pagination } from '../types/pagination.ts';
+
+// (alias) type SponsorTier = "Diamond" | "Platinum" | "Gold" | "Silver" | "Bronze"
 
 // Modal
 const isModalOpen = ref(false);
@@ -119,6 +145,21 @@ const fetchSponsors = (url: string) => {
     .catch((error) => {
       console.error(error);
     });
+};
+
+const getGridSpanClass = (tier: string) => {
+  switch (tier) {
+    case 'Diamond':
+    case 'Platinum':
+    case 'Gold':
+      return 'xl:col-span-2 md:col-span-2 xl:row-span-2 md:row-span-2';
+    case 'Silver':
+      return 'xl:col-span-2 md:col-span-2';
+    case 'Bronze':
+      return 'xl:col-span-1 md:col-span-1';
+    default:
+      return '';
+  }
 };
 
 // Pagination methods

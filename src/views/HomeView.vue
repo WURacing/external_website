@@ -1,6 +1,6 @@
 <template>
   <UniversalHero bgsrc="../assets/hero-bg.jpg"
-    announcement-link="https://www.sae.org/attend/student-events/formula-sae-michigan" cta-button-link="/about"
+    announcement-link="https://www.sae.org/attend/student-events/formula-sae-michigan" cta-button-link="/gallery"
     cta-link="/team">
     <template #announcement>
       <b>{{ countdown }}</b> until Formula SAE Michigan 2024!
@@ -20,7 +20,7 @@
     </template>
 
     <template #cta-button>
-      Learn More
+      View Gallery
     </template>
 
     <template #cta-link>

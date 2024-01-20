@@ -23,6 +23,15 @@ const router = createRouter({
       },
     },
     {
+      path: '/history',
+      name: 'history',
+      component: () => import('../views/HistoryView.vue'),
+      meta: {
+        title: 'History',
+        hideInFooter: false,
+      },
+    },
+    {
       path: '/team',
       name: 'team',
       component: () => import('../views/TeamView.vue'),

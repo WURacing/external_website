@@ -14,7 +14,7 @@
 }
 
 body {
-  @apply bg-gray-900;
+  @apply bg-stone-900;
 }
 
 ::selection {

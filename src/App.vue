@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-900 text-gray-100 flex flex-col min-h-screen" id="smooth-wrapper">
+  <div class="bg-stone-900 text-stone-100 flex flex-col min-h-screen" id="smooth-wrapper">
     <div id="smooth-content" :key="$route.fullPath">
       <!-- Universal Header -->
       <UniversalHeader />

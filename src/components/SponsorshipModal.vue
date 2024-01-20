@@ -3,30 +3,30 @@
   <TransitionRoot appear :show="isModalOpen" as="template">
     <Dialog as="div" @close="closeModal" class="relative z-50" :class="{ 'modal-open': isModalOpen }">
       <!-- Overlay with AOS fade -->
-      <div class="fixed inset-0 bg-gray-100/10" />
+      <div class="fixed inset-0 bg-stone-100/10" />
       <!-- Modal dialog container with AOS zoom -->
       <div class="relative inset-0 overflow-y-auto flex items-center justify-center p-4">
-        <DialogPanel class="w-full max-w-4xl transform rounded-lg bg-gray-900 p-6 shadow-xl transition-all"
+        <DialogPanel class="w-full max-w-4xl transform rounded-lg bg-stone-900 p-6 shadow-xl transition-all"
           id="sponsorship-modal">
           <!--
           Modal header with close button
           -->
           <div class="flex justify-between items-center">
-            <DialogTitle class="text-2xl font-bold text-gray-100">Sponsorship Packet</DialogTitle>
+            <DialogTitle class="text-2xl font-bold text-stone-100">Sponsorship Packet</DialogTitle>
             <button type="button"
-              class="rounded-md p-2 inline-flex items-center justify-center text-gray-100 hover:text-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-200"
+              class="rounded-md p-2 inline-flex items-center justify-center text-stone-100 hover:text-stone-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-stone-200"
               @click="closeModal">
-              <font-awesome-icon :icon="['fas', 'times']" class="h-6 w-6 text-gray-100 fill-current" />
+              <font-awesome-icon :icon="['fas', 'times']" class="h-6 w-6 text-stone-100 fill-current" />
             </button>
           </div>
           <!-- PDF Embed container with GSAP-powered scroll fade -->
-          <div class="mt-4 w-full h-80vh bg-gray-900 rounded shadow overflow-y-auto" id="pdf-container">
+          <div class="mt-4 w-full h-80vh bg-stone-900 rounded shadow overflow-y-auto" id="pdf-container">
             <vue-pdf-embed class="w-full rounded" :source="source" />
           </div>
           <!-- Closing section with a button enhanced with GSAP hover scale -->
           <div class="mt-4 text-right">
             <button type="button"
-              class="inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-100 border border-transparent rounded-md hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-500"
+              class="inline-flex justify-center px-4 py-2 text-sm font-medium text-stone-900 bg-stone-100 border border-transparent rounded-md hover:bg-stone-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-stone-500"
               @mouseenter="scaleButton" @mouseleave="resetButtonScale" @focusin="scaleButton" @focusout="resetButtonScale"
               @click="closeModal">
               Close

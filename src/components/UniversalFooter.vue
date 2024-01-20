@@ -1,6 +1,6 @@
 <template>
   <!-- Footer shaped with Tailwind CSS and animated with AOS and GSAP -->
-  <footer class="bg-gray-900 border-t-4 border-gray-800 text-gray-200" data-aos="fade-up" aria-labelledby="footer-heading"
+  <footer class="bg-stone-900 border-t-4 border-stone-800 text-stone-200" data-aos="fade-up" aria-labelledby="footer-heading"
     id="footer">
     <h2 id="footer-heading" class="sr-only">Footer</h2>
 

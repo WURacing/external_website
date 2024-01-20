@@ -1,5 +1,5 @@
 <template>
-  <div class="relative min-h-screen isolate overflow-hidden flex flex-col items-center bg-gray-900 text-gray-100"
+  <div class="relative min-h-screen isolate overflow-hidden flex flex-col items-center bg-stone-900 text-stone-100"
     :style="{ paddingTop: headerHeight + 'px' }">
     <div class="flex flex-col items-center w-full px-8 pb-8 max-w-7xl">
 
@@ -8,7 +8,7 @@
         <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gradient mb-4">
           MEET OUR TEAM
         </h1>
-        <p class="text-lg sm:text-xl md:text-2xl text-gray-300">
+        <p class="text-lg sm:text-xl md:text-2xl text-stone-300">
           We are a team of passionate students at Washington University in St. Louis.
         </p>
       </div>

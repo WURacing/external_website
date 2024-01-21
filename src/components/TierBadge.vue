@@ -27,3 +27,4 @@ const tierGradient = computed(() => {
   }
 });
 </script>
+../types/Sponsors.js

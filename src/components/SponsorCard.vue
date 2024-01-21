@@ -2,11 +2,15 @@
   <a
     :href="sponsor.link"
     class="sponsor-card block transform transition duration-500 ease-in-out hover:scale-105 rounded-lg overflow-hidden shadow-lg bg-gradient-to-r from-stone-800 to-stone-900">
-    <div class="flex justify-between items-center p-4 h-full space-x-4">
+    <div class="flex justify-between items-center p-6 h-full space-x-6">
       <div class="flex flex-row items-center justify-center">
-        <img :src="sponsor.imagePath" alt="Sponsor Logo" class="w-16 h-16 rounded-full mr-4">
+        <img
+          :src="sponsor.imagePath"
+          :class="logoSizeClass(sponsor.tier)"
+          alt="Sponsor Logo"
+          class="rounded-full mr-6 border-2 border-white">
         <div>
-          <h3 class="font-bold text-lg text-stone-100">{{ sponsor.name }}</h3>
+          <h3 class="font-bold text-lg text-stone-100 hover:text-stone-200 transition-colors duration-200">{{ sponsor.name }}</h3>
           <TierBadge :tier="sponsor.tier" />
         </div>
       </div>
@@ -18,10 +22,25 @@
 import { onMounted } from 'vue';
 import { gsap } from 'gsap';
 import AOS from 'aos';
-import { type Sponsor, type SponsorTier } from '../types/sponsors';
+import { type Sponsor, type SponsorTier } from '../types/Sponsors';
 import TierBadge from './TierBadge.vue';
 
 defineProps<{ sponsor: Sponsor }>();
+
+const logoSizeClass = (tier: SponsorTier) => {
+  switch (tier) {
+    case 'Bronze':
+      return 'w-12 h-12';
+    case 'Silver':
+      return 'w-16 h-16';
+    case 'Gold':
+    case 'Platinum':
+    case 'Diamond':
+      return 'w-20 h-20';
+    default:
+      return 'w-12 h-12';
+  }
+};
 
 onMounted(() => {
   gsap.fromTo(
@@ -48,5 +67,8 @@ onMounted(() => {
 </script>
 
 <style>
-/* Additional styles can be here */
+.sponsor-card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 </style>
+../types/Sponsors

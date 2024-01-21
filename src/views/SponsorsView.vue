@@ -30,15 +30,15 @@
 
       <!-- Sponsor card grid -->
       <div
-        class="mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 animate-fadeIn w-full max-w-7xl"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8"
+        data-aos="fade-up"
+        data-aos-duration="1000"
       >
         <SponsorCard
           v-for="sponsor in sponsorsData.data"
           :key="sponsor.id"
           :sponsor="sponsor"
-          :class="`sponsor-card ${getGridSpanClass(
-            sponsor.tier,
-          )} transition-transform duration-500 hover:scale-105`"
+          class="sponsor-card transition-transform duration-500 hover:scale-105"
         />
       </div>
 
@@ -82,9 +82,9 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import PDF from '../assets/sponsorship_packet2023.pdf';
 import SponsorCard from '../components/SponsorCard.vue';
 import SponsorshipModal from '../components/SponsorshipModal.vue';
-import { type Sponsor, type SponsorTier } from '../types/sponsors.ts';
+import { type Sponsor, type SponsorTier } from '../types/Sponsors.ts';
 import makeBackendAPIRequest from '../services/axios.ts';
-import { type Pagination } from '../types/pagination.ts';
+import { type Pagination } from '../types/Pagination.ts';
 
 // (alias) type SponsorTier = "Diamond" | "Platinum" | "Gold" | "Silver" | "Bronze"
 
@@ -147,21 +147,6 @@ const fetchSponsors = (url: string) => {
     });
 };
 
-const getGridSpanClass = (tier: string) => {
-  switch (tier) {
-    case 'Diamond':
-    case 'Platinum':
-    case 'Gold':
-      return 'xl:col-span-2 md:col-span-2 xl:row-span-2 md:row-span-2';
-    case 'Silver':
-      return 'xl:col-span-2 md:col-span-2';
-    case 'Bronze':
-      return 'xl:col-span-1 md:col-span-1';
-    default:
-      return '';
-  }
-};
-
 // Pagination methods
 const prevPage = () => {
   if (sponsorsData.value.prev_page_url) {
@@ -222,3 +207,4 @@ onMounted(() => {
   color: transparent;
 }
 </style>
+../types/Sponsors

@@ -5,9 +5,9 @@
     <div class="flex justify-between items-center p-6 h-full space-x-6">
       <div class="flex flex-row items-center justify-center">
         <img
-          :src="sponsor.imagePath"
+          :src="sponsor.imagePath || 'https://placehold.co/600x400'"
           :class="logoSizeClass(sponsor.tier)"
-          alt="Sponsor Logo"
+          :alt="sponsor.name + ' Logo'"
           class="rounded-full mr-6 border-2 border-white">
         <div>
           <h3 class="font-bold text-lg text-stone-100 hover:text-stone-200 transition-colors duration-200">{{ sponsor.name }}</h3>

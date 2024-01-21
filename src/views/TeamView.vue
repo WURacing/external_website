@@ -1,55 +1,118 @@
 <template>
-  <div class="relative min-h-screen isolate overflow-hidden flex flex-col items-center bg-stone-900 text-stone-100"
-    :style="{ paddingTop: headerHeight + 'px' }">
+  <div
+    class="relative min-h-screen isolate overflow-hidden flex flex-col items-center bg-stone-900 text-stone-100"
+    :style="{ paddingTop: headerHeight + 'px' }"
+  >
     <div class="flex flex-col items-center w-full px-8 pb-8 max-w-7xl">
-
       <!-- Title Section -->
-      <div class="p-8 w-full max-w-7xl text-center" data-aos="fade-down" data-aos-duration="1000">
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gradient mb-4">
+      <div
+        class="p-8 w-full max-w-7xl text-center"
+        data-aos="fade-down"
+        data-aos-duration="1000"
+      >
+        <h1
+          class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gradient mb-4"
+        >
           MEET OUR TEAM
         </h1>
         <p class="text-lg sm:text-xl md:text-2xl text-stone-300">
-          We are a team of passionate students at Washington University in St. Louis.
+          Meet the people who make our success possible.
         </p>
       </div>
 
-      <!-- Team Grid -->
-      <div
-        class="team-grid mb-16 p-8 w-full max-w-7xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-        data-aos="fade-up" data-aos-duration="1000">
-        <TeamMemberCard v-for="member in teamMembers" :key="member.id" :member="member" />
+      <!-- Team member card grid -->
+      <div class="mt-8 w-full max-w-7xl">
+        <div
+          v-for="category in teamMemberCategories"
+          :key="category"
+          class="mt-8"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
+          <h2
+            class="text-2xl font-bold mb-4"
+            v-if="
+              teamMembersData.filter((member) => member.category === category)
+                .length > 0
+            "
+          >
+            {{ category }}
+          </h2>
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"
+          >
+            <TeamMemberCard
+              v-for="member in teamMembersData.filter(
+                (member) => member.category === category
+              )"
+              :key="member.id"
+              :member="member"
+              class="team-member-card transition-transform duration-500 hover:scale-105"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import AOS from 'aos';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import TeamMemberCard from '@/components/TeamMemberCard.vue';
+<script async setup lang="ts">
+import { onMounted, ref, type Ref } from "vue";
+import TeamMemberCard from "../components/TeamMemberCard.vue";
+import {
+  type TeamMember,
+  type TeamMemberCategory,
+} from "../types/TeamMembers.ts";
+import makeBackendAPIRequest from "../services/axios.ts";
 
-interface TeamMember {
-  id: number;
-  name: string;
-  role: string;
-  image: string;
-}
-
-// Sample data for team members
-const teamMembers: TeamMember[] = [
-  // Populate with actual team member data
+const teamMembersData: Ref<TeamMember[]> = ref([]);
+const teamMemberCategories: TeamMemberCategory[] = [
+  "Executive Board",
+  "System Leads",
+  "Advisors",
+  "Alumni",
+  "Members",
 ];
 
-const headerHeight = ref(0);
+const fetchTeamMembers = () => {
+  makeBackendAPIRequest<TeamMember[]>("/team-members")
+    .then((response) => {
+      // Map the response data to the teamMembersData ref
+      response.data.map((member) => {
+        teamMembersData.value.push({
+          id: member.id,
+          name: member.name,
+          role: member.role,
+          email: member.email,
+          photoPath: import.meta.env.VITE_APP_BACKEND_URL + member.photo_path,
+          category: member.category,
+          createdAt: new Date(member.created_at),
+          updatedAt: new Date(member.updated_at),
+        });
+      });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+const headerHeight = ref(0); // Ref to store the height of the UniversalHeader
 
 onMounted(() => {
-  AOS.init();
-  gsap.registerPlugin(ScrollTrigger);
-
-  // Calculate the header's height if necessary
-  const header = document.querySelector('header');
-  headerHeight.value = header ? header.offsetHeight : 0;
+  // Calculate the height of the UniversalHeader
+  const header = document.querySelector("header"); // Assuming your UniversalHeader has a <header> tag or you need to adjust the selector based on your actual header element
+  if (header) {
+    headerHeight.value = header.offsetHeight; // Get the outer height of the header
+  }
+  fetchTeamMembers();
 });
 </script>
+
+<style scoped>
+.text-gradient {
+  background: linear-gradient(to right, #d63030, #942020);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+</style>

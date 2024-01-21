@@ -37,6 +37,7 @@ import {
 import axios from 'axios';
 import App from './App.vue';
 import router from './router/index.ts';
+import VueGtag from 'vue-gtag';
 
 /* add icons to the library */
 library.add(
@@ -67,7 +68,13 @@ axios.interceptors.response.use((response) => response, (error) => Promise.rejec
 app.use(createPinia());
 app.use(router);
 app.use(SharedElementDirective);
+app.use(VueGtag, {
+  config: {
+    id: process.env.GOOGLE_ANALYTICS_PROPERTY_ID
+  }
+});
 router.beforeEach(SharedElementRouteGuard);
 app.component('font-awesome-icon', FontAwesomeIcon);
+
 
 app.mount('#app');

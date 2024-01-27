@@ -13,58 +13,117 @@
         <h1
           class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gradient mb-4"
         >
-            OUR HISTORY
+          OUR HISTORY
         </h1>
         <p class="text-lg sm:text-xl md:text-2xl text-stone-300">
-            An overview of our competition history.
+          An overview of our competition history.
         </p>
       </div>
-    </div>
 
-    
+      <!-- Histories Section -->
+      <div class="w-full flex flex-col items-center space-y-8">
+        <div
+          v-for="history in historyData.data"
+          :key="history.id"
+          class="p-4 bg-stone-800 rounded-lg"
+        >
+          <!-- Gallery made up images, videos, and pdfs. All you get is the url:
+              export interface History {
+                  id: number;
+                  competition_year: number;
+                  place: number;
+                  description: string;
+                  gallery: string[];
+                  created_at?: Date;
+                  updated_at?: Date;
+              }
+            -->
+          <div v-for="thumb in history.gallery" :key="thumb">
+            <img v-if="thumb.endsWith('.webp')" :src="thumb" />
+          </div>
+
+          <h2 class="text-2xl font-bold mb-2">
+            {{ history.competition_year }}
+          </h2>
+          <p class="mb-2">{{ history.description }}</p>
+          <button
+            type="button"
+            @click="getEventDetails(history.id)"
+            class="mt-2 bg-stone-700 hover:bg-stone-600 text-stone-100 px-4 py-2 rounded"
+          >
+            View Events
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from "vue";
-import AOS from "aos";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import axios from "axios";
+import { ref, onMounted } from 'vue';
+import { type PaginatedHistory, type EventDetails } from '@/types/Events';
+import backendAPIRequest from '../services/axios';
 
-const headerHeight = ref(0);
-
-interface GalleryItem {
-  id: string;
-  media_type: string;
-  media_url: string;
-  permalink: string;
-  thumbnail_url: string;
-  timestamp: string;
-  username: string;
-  caption: string;
-}
-
-// GET /me/media?fields={fields}&access_token={access-token}
-const gallery = ref<GalleryItem[]>([]);
-
-onMounted(async () => {
-  const response = await axios.get("https://graph.facebook.com/me/media", {
-    params: {
-      fields:
-        "id,media_type,media_url,permalink,thumbnail_url,timestamp,username,caption",
-      access_token: import.meta.env.VITE_APP_INSTAGRAM_ACCESS_TOKEN,
-    },
-  });
-  gallery.value = response.data.data;
+const historyData = ref<PaginatedHistory>({
+  data: [],
+  links: {
+    first: '',
+    last: '',
+    prev: '',
+    next: '',
+  },
+  meta: {
+    current_page: 0,
+    from: 0,
+    last_page: 0,
+    links: [],
+    path: '',
+    per_page: 0,
+    to: 0,
+    total: 0,
+  },
 });
 
-onMounted(() => {
-  gsap.registerPlugin(ScrollTrigger);
-  AOS.init();
+const headerHeight = ref(0);
+const eventDetails = ref<EventDetails | null>(null);
+
+const getEventDetails = async (eventID: number): Promise<void> => {
+  const response = await backendAPIRequest<EventDetails>(
+    `/histories/${eventID}`,
+  );
+  eventDetails.value = {
+    id: response.data.id,
+    history_id: response.data.history_id,
+    events: response.data.events,
+    created_at: new Date(String(response.data.created_at)),
+    updated_at: new Date(String(response.data.updated_at)),
+  };
+};
+
+onMounted(async () => {
+  try {
+    const response = await backendAPIRequest<PaginatedHistory>('/histories');
+    const histories = response.data.data.map((history) => ({
+      id: history.id,
+      competition_year: history.competition_year,
+      place: history.place,
+      description: history.description,
+      gallery: history.gallery,
+      created_at: new Date(String(history.created_at)),
+      updated_at: new Date(String(history.updated_at)),
+    }));
+
+    historyData.value = {
+      data: histories,
+      links: response.data.links,
+      meta: response.data.meta,
+    };
+  } catch (error) {
+    console.error('An error occurred while fetching the data:', error);
+  }
 
   // Calculate the header's height and observe changes
-  const header = document.querySelector("header"); // Update selector if needed
+  const header = document.querySelector('header');
   if (header) {
     const updateHeaderHeight = () => {
       headerHeight.value = header.offsetHeight;

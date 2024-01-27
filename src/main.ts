@@ -35,9 +35,9 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 
 import axios from 'axios';
+import VueGtag from 'vue-gtag';
 import App from './App.vue';
 import router from './router/index.ts';
-import VueGtag from 'vue-gtag';
 
 /* add icons to the library */
 library.add(
@@ -60,21 +60,21 @@ app.config.globalProperties.$axios = axios;
 axios.defaults.baseURL = 'http://wuracing-api.test/api/v1/';
 
 // Request interceptor
-axios.interceptors.request.use((config) => config, (error) => Promise.reject(error));
+axios.interceptors.request.use(
+  (config) => config,
+  (error) => Promise.reject(error),
+);
 
 // Response interceptor
-axios.interceptors.response.use((response) => response, (error) => Promise.reject(error));
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => Promise.reject(error),
+);
 
 app.use(createPinia());
 app.use(router);
 app.use(SharedElementDirective);
-app.use(VueGtag, {
-  config: {
-    id: process.env.GOOGLE_ANALYTICS_PROPERTY_ID
-  }
-});
 router.beforeEach(SharedElementRouteGuard);
 app.component('font-awesome-icon', FontAwesomeIcon);
-
 
 app.mount('#app');

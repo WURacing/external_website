@@ -1,19 +1,31 @@
 <template>
+  <!-- In grid -->
   <a
+    class="sponsor-card relative h-full w-full rounded-lg overflow-hidden shadow-lg transition-transform hover:shadow-2xl bg-stone-800 group"
+    :class="tierSizeClass(sponsor.tier)"
+    @mouseenter="animateCard"
+    @mouseleave="resetCardAnimation"
+    @focusin="animateCard"
+    @focusout="resetCardAnimation"
     :href="sponsor.link"
-    class="sponsor-card block transform transition duration-500 ease-in-out hover:scale-105 rounded-lg overflow-hidden shadow-lg bg-gradient-to-r from-stone-800 to-stone-900">
-    <div class="flex justify-between items-center p-6 h-full space-x-6">
-      <div class="flex flex-row items-center justify-center">
-        <img
-          :src="sponsor.imagePath || 'https://placehold.co/600x400'"
-          :class="logoSizeClass(sponsor.tier)"
-          :alt="sponsor.name + ' Logo'"
-          class="rounded-full mr-6 border-2 border-white">
-        <div>
-          <h3 class="font-bold text-lg text-stone-100 hover:text-stone-200 transition-colors duration-200">{{ sponsor.name }}</h3>
-          <TierBadge :tier="sponsor.tier" />
-        </div>
-      </div>
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <!-- Sponsor image -->
+    <div class="h-auto w-full aspect-w-1 aspect-h-1 overflow-hidden">
+      <img
+        :src="sponsor.imagePath || 'https://placehold.co/600x400'"
+        :alt="sponsor.name + ' logo'"
+        class="object-cover h-full w-full"
+      />
+    </div>
+
+    <!-- Sponsor Info -->
+    <div class="p-4 text-center">
+      <h3 class="text-xl font-bold text-stone-100 mb-2">{{ sponsor.name }}</h3>
+
+      <!-- Sponsor Tier Badge -->
+      <TierBadge :tier="sponsor.tier" />
     </div>
   </a>
 </template>
@@ -25,20 +37,25 @@ import AOS from 'aos';
 import { type Sponsor, type SponsorTier } from '../types/Sponsors';
 import TierBadge from './TierBadge.vue';
 
+// type SponsorTier = 'Diamond' | 'Platinum' | 'Gold' | 'Silver' | 'Bronze';
+
 defineProps<{ sponsor: Sponsor }>();
 
-const logoSizeClass = (tier: SponsorTier) => {
+const tierSizeClass = (tier: SponsorTier) => {
   switch (tier) {
-    case 'Bronze':
-      return 'w-12 h-12';
-    case 'Silver':
-      return 'w-16 h-16';
-    case 'Gold':
-    case 'Platinum':
+    // Diamond, platinum, and gold sponsors are large
+    // Silver is medium
+    // Bronze is small
     case 'Diamond':
-      return 'w-20 h-20';
+    case 'Platinum':
+    case 'Gold':
+      return 'col-span-2 row-span-2';
+    case 'Silver':
+      return 'col-span-2 row-span-1';
+    case 'Bronze':
+      return 'col-span-1 row-span-1';
     default:
-      return 'w-12 h-12';
+      return '';
   }
 };
 
@@ -64,11 +81,21 @@ onMounted(() => {
 
   AOS.refresh();
 });
+
+const animateCard = (event: Event) => {
+  const card = event.currentTarget as HTMLElement;
+  gsap.to(card, { scale: 1.05, duration: 0.3, ease: 'power1.out' });
+};
+
+const resetCardAnimation = (event: Event) => {
+  const card = event.currentTarget as HTMLElement;
+  gsap.to(card, { scale: 1, duration: 0.3, ease: 'power1.out' });
+};
 </script>
 
 <style>
-.sponsor-card {
+.sponsor-card:hover {
+  transform: translateY(-5px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 </style>
-../types/Sponsors

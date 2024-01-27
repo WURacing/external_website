@@ -43,7 +43,7 @@
           >
             <TeamMemberCard
               v-for="member in teamMembersData.filter(
-                (member) => member.category === category
+                (member) => member.category === category,
               )"
               :key="member.id"
               :member="member"
@@ -57,25 +57,25 @@
 </template>
 
 <script async setup lang="ts">
-import { onMounted, ref, type Ref } from "vue";
-import TeamMemberCard from "../components/TeamMemberCard.vue";
+import { onMounted, ref, type Ref } from 'vue';
+import TeamMemberCard from '../components/TeamMemberCard.vue';
 import {
   type TeamMember,
   type TeamMemberCategory,
-} from "../types/TeamMembers.ts";
-import makeBackendAPIRequest from "../services/axios.ts";
+} from '../types/TeamMembers.ts';
+import makeBackendAPIRequest from '../services/axios.ts';
 
 const teamMembersData: Ref<TeamMember[]> = ref([]);
 const teamMemberCategories: TeamMemberCategory[] = [
-  "Executive Board",
-  "System Leads",
-  "Advisors",
-  "Alumni",
-  "Members",
+  'Executive Board',
+  'System Leads',
+  'Advisors',
+  'Alumni',
+  'Members',
 ];
 
 const fetchTeamMembers = () => {
-  makeBackendAPIRequest<TeamMember[]>("/team-members")
+  makeBackendAPIRequest<TeamMember[]>('/team-members')
     .then((response) => {
       // Map the response data to the teamMembersData ref
       response.data.map((member) => {
@@ -100,7 +100,7 @@ const headerHeight = ref(0); // Ref to store the height of the UniversalHeader
 
 onMounted(() => {
   // Calculate the height of the UniversalHeader
-  const header = document.querySelector("header"); // Assuming your UniversalHeader has a <header> tag or you need to adjust the selector based on your actual header element
+  const header = document.querySelector('header'); // Assuming your UniversalHeader has a <header> tag or you need to adjust the selector based on your actual header element
   if (header) {
     headerHeight.value = header.offsetHeight; // Get the outer height of the header
   }

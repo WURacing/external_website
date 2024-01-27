@@ -29,40 +29,42 @@
       </div>
 
       <!-- Sponsor card grid -->
-      <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8"
-        data-aos="fade-up"
-        data-aos-duration="1000"
-      >
-        <SponsorCard
-          v-for="sponsor in sponsorsData.data"
-          :key="sponsor.id"
-          :sponsor="sponsor"
-          class="sponsor-card transition-transform duration-500 hover:scale-105"
-        />
-      </div>
+      <div class="mt-8 w-full max-w-7xl">
+        <div
+          class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-8 gap-4 mt-8"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
+          <SponsorCard
+            v-for="sponsor in sponsorsData.data"
+            :key="sponsor.id"
+            :sponsor="sponsor"
+            class="sponsor-card transition-transform duration-500 hover:scale-105"
+          />
+        </div>
 
-      <!-- Pagination -->
-      <div class="mt-8 flex justify-center items-center space-x-4">
-        <button
-          @click="prevPage"
-          type="button"
-          :disabled="!sponsorsData.prev_page_url"
-          class="px-4 py-2 rounded-md bg-stone-800 text-stone-100 hover:bg-stone-700 disabled:opacity-50"
-        >
-          Prev
-        </button>
-        <p class="text-stone-100">
-          Page {{ sponsorsData.current_page }} of {{ sponsorsData.last_page }}
-        </p>
-        <button
-          @click="nextPage"
-          type="button"
-          :disabled="!sponsorsData.next_page_url"
-          class="px-4 py-2 rounded-md bg-stone-800 text-stone-100 hover:bg-stone-700 disabled:opacity-50"
-        >
-          Next
-        </button>
+        <!-- Pagination -->
+        <div class="mt-8 flex justify-center items-center space-x-4">
+          <button
+            @click="prevPage"
+            type="button"
+            :disabled="!sponsorsData.prev_page_url"
+            class="px-4 py-2 rounded-md bg-stone-800 text-stone-100 hover:bg-stone-700 disabled:opacity-50"
+          >
+            Prev
+          </button>
+          <p class="text-stone-100">
+            Page {{ sponsorsData.current_page }} of {{ sponsorsData.last_page }}
+          </p>
+          <button
+            @click="nextPage"
+            type="button"
+            :disabled="!sponsorsData.next_page_url"
+            class="px-4 py-2 rounded-md bg-stone-800 text-stone-100 hover:bg-stone-700 disabled:opacity-50"
+          >
+            Next
+          </button>
+        </div>
       </div>
 
       <!-- Modal for viewing sponsorship packet -->
@@ -79,6 +81,7 @@
 import { onMounted, ref, type Ref } from 'vue';
 import { gsap } from 'gsap';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import type { AxiosResponse } from 'axios';
 import PDF from '../assets/sponsorship_packet2023.pdf';
 import SponsorCard from '../components/SponsorCard.vue';
 import SponsorshipModal from '../components/SponsorshipModal.vue';
@@ -113,14 +116,14 @@ const sponsorsData: Ref<Pagination<Sponsor>> = ref({
 
 const fetchSponsors = (url: string) => {
   makeBackendAPIRequest<Pagination<Sponsor>>(url ?? '/sponsors')
-    .then((response) => {
+    .then((response: AxiosResponse<Pagination<Sponsor>>) => {
       // Map the response data to correctly match the Sponsor type
       const sponsors = response.data.data.map((sponsor) => ({
         id: sponsor.id,
         name: sponsor.name,
         tier: sponsor.tier,
         link: sponsor.link,
-        imagePath: import.meta.env.VITE_APP_BACKEND_URL + sponsor.image_path,
+        imagePath: sponsor.image_path ? import.meta.env.VITE_APP_BACKEND_URL + sponsor.image_path : 'https://placehold.co/600x400',
         createdAt: sponsor.created_at,
         updatedAt: sponsor.updated_at,
       }));

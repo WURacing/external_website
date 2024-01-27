@@ -27,19 +27,19 @@
           :key="history.id"
           class="p-4 bg-stone-800 rounded-lg"
         >
-          <!-- Gallery made up images, videos, and pdfs. All you get is the url:
-              export interface History {
-                  id: number;
-                  competition_year: number;
-                  place: number;
-                  description: string;
-                  gallery: string[];
-                  created_at?: Date;
-                  updated_at?: Date;
-              }
-            -->
-          <div v-for="thumb in history.gallery" :key="thumb">
-            <img v-if="thumb.endsWith('.webp')" :src="thumb" />
+          <!-- Gallery made up images, videos, and pdfs. All you get is the url -->
+          <div
+            ref="carousel"
+            class="carousel-container overflow-hidden relative w-full"
+          >
+            <div
+              v-for="(thumb, index) in filteredGallery(history.gallery)"
+              :key="thumb"
+              class="carousel-item absolute top-0 h-full w-full flex items-center justify-center"
+              s
+            >
+              <img v-if="thumb.endsWith('.webp')" :src="thumb" alt="" />
+            </div>
           </div>
 
           <h2 class="text-2xl font-bold mb-2">
@@ -55,15 +55,21 @@
           </button>
         </div>
       </div>
+
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { type PaginatedHistory, type EventDetails } from '@/types/Events';
 import backendAPIRequest from '../services/axios';
 
+gsap.registerPlugin(ScrollTrigger);
+
+const carousel = ref(null);
 const historyData = ref<PaginatedHistory>({
   data: [],
   links: {
@@ -132,5 +138,33 @@ onMounted(async () => {
     updateHeaderHeight();
     new ResizeObserver(updateHeaderHeight).observe(header);
   }
+
+  // Initialize GSAP instance for carousel effect
+  if (carousel.value) { // Add a null check for carousel.value
+    gsap.to(carousel.value.children, {
+      xPercent: -100 * ((carousel.value.children?.length ?? 0) - 1), // Handle the possibility of carousel.value.children being null
+      ease: 'none',
+      scrollTrigger: {
+        trigger: carousel.value,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+        pin: true,
+        anticipatePin: 1,
+      },
+    });
+  }
 });
+
+const filteredGallery = (gallery: string[]) => gallery.filter((url) => url.endsWith('.webp'));
 </script>
+
+<style scoped>
+.carousel-container {
+  @apply relative flex;
+}
+
+.carousel-item {
+  @apply w-full h-full;
+}
+</style>

@@ -82,7 +82,7 @@ const fetchTeamMembers = () => {
             response.data.map((member) => {
                 teamMembersData.value.push({
                     ...member,
-                    photo_path: import.meta.env.VITE_APP_BACKEND_URL + member.photo_path,
+                    photo_path: import.meta.env.VITE_APP_BACKEND_URL + 'storage/' + member.photo_path,
                     created_at: new Date(member.created_at),
                     updated_at: new Date(member.updated_at),
                 });

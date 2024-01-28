@@ -101,7 +101,9 @@ onMounted(async () => {
             competition_year: history.competition_year,
             place: history.place,
             description: history.description,
-            gallery: history.gallery,
+            gallery: history.gallery.map((image) => {
+                return import.meta.env.VITE_APP_BACKEND_URL + "storage/" + image;
+            }),
             created_at: new Date(String(history.created_at)),
             updated_at: new Date(String(history.updated_at)),
         }));

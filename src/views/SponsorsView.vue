@@ -124,7 +124,7 @@ const fetchSponsors = (url: string) => {
             const sponsors = response.data.data.map((sponsor: Sponsor) => ({
                 ...sponsor,
                 image_path: sponsor.image_path
-                    ? import.meta.env.VITE_APP_BACKEND_URL + sponsor.image_path
+                    ? import.meta.env.VITE_APP_BACKEND_URL + 'storage/' + sponsor.image_path
                     : "https://placehold.co/600x400",
                 created_at: sponsor.created_at,
                 updated_at: sponsor.updated_at,

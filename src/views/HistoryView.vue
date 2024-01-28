@@ -13,30 +13,36 @@
         <h1
           class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gradient mb-4"
         >
-          {{ eventDetails }}
+          {{ eventDetails?.competition_year }}
         </h1>
         <p class="text-lg sm:text-xl md:text-2xl text-stone-300">
-          Details of the competition in {{ eventDetails }}.
+          Details of the competition in {{ eventDetails?.competition_year }}.
         </p>
       </div>
 
       <!-- Event Details Section -->
       <div class="w-full grid grid-cols-1 md:grid-cols-1 xl:grid-cols-2 gap-8">
         <div
-          v-for="(event, key) in eventDetails?.events"
-          :key="key"
+          v-for="(eventDetail, index) in eventDetails?.eventDetails"
+          :key="index"
           class="p-4 bg-stone-800 rounded-lg shadow-lg transform transition-transform duration-500 hover:scale-105"
           data-aos="fade-up"
           data-aos-duration="1000"
         >
-          <h2 class="text-2xl font-bold mb-2">
-            {{ event.event_type }}
-          </h2>
-          <p class="mb-2">
-            Points: {{ event.points }}<br>
-            Time: {{ event.time }}<br>
-            Placement: {{ event.placement }}
-          </p>
+          <div
+            v-for="(event, key) in eventDetail?.events"
+            :key="key"
+            class="mb-4"
+          >
+            <h2 class="text-2xl font-bold mb-2">
+              {{ event?.event_type }}
+            </h2>
+            <p class="mb-2">
+              Points: {{ event?.points }}<br>
+              Time: {{ event?.time }}<br>
+              Placement: {{ event?.placement }}
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -53,18 +59,18 @@ const route = useRoute();
 const eventDetails = ref<EventDetails | null>(null);
 const headerHeight = ref(0);
 
+type EventDetailsResponse = {
+    data: EventDetails;
+};
+
 const getEventDetails = async (eventID: number): Promise<void> => {
-    const response = await backendAPIRequest<EventDetails>(
+    const response = await backendAPIRequest<EventDetailsResponse>(
         `/histories/${eventID}`,
     );
 
-    eventDetails.value = {
-        id: response.data.id,
-        history_id: response.data.history_id,
-        events: response.data.events,
-        created_at: new Date(String(response.data.created_at)),
-        updated_at: new Date(String(response.data.updated_at)),
-    };
+    eventDetails.value = response.data.data;
+
+    console.log(eventDetails.value);
 };
 
 onMounted(async () => {

@@ -45,7 +45,7 @@ onMounted(async () => {
         smoother = ScrollSmoother.create({
             smooth: 1,
             effects: true,
-            smoothTouch: 0.15,
+            smoothTouch: 0.05,
             normalizeScroll: true,
         });
     };

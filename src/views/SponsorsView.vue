@@ -34,7 +34,7 @@
       <!-- Sponsor card grid -->
       <div class="mt-8 w-full max-w-7xl">
         <div
-          class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-8 gap-4 mt-8"
+          class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 xl:grid-cols-16 gap-4 mt-8 mx-auto"
           data-aos="fade-up"
           data-aos-duration="1000"
         >

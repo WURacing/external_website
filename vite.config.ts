@@ -5,7 +5,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    base: "/dist/",
+    base: '/',
     plugins: [
         vue(),
         eslint(),
@@ -18,15 +18,6 @@ export default defineConfig({
         outDir: "../../public/dist",
         emptyOutDir: true,
         manifest: true,
-        rollupOptions: {
-            input: {
-                main: path.resolve(__dirname, "./index.html"),
-                gallery: path.resolve(__dirname, "./gallery.html"),
-                history: path.resolve(__dirname, "./history.html"),
-                team: path.resolve(__dirname, "./team.html"),
-                sponsors: path.resolve(__dirname, "./sponsors.html"),
-            },
-        },
     },
     assetsInclude: ['**/*.mov'],
     resolve: {

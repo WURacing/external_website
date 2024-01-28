@@ -1,4 +1,4 @@
-type SponsorTier = 'Diamond' | 'Platinum' | 'Gold' | 'Silver' | 'Bronze';
+type SponsorTier = "Diamond" | "Platinum" | "Gold" | "Silver" | "Bronze";
 
 /*
 Sponsor interface should match the following table definition:
@@ -22,17 +22,13 @@ CREATE TABLE "public"."sponsors" (
 */
 
 interface Sponsor {
-[x: string]: any;
-  id: number;
-  name: string;
-  tier: SponsorTier;
-  link: string;
-  imagePath: string;
-  createdAt: Date;
-  updatedAt: Date;
+    id: number;
+    name: string;
+    tier: SponsorTier;
+    link: string;
+    image_path: string;
+    created_at: Date;
+    updated_at: Date;
 }
 
-export type {
-  SponsorTier,
-  Sponsor,
-};
+export type { SponsorTier, Sponsor };

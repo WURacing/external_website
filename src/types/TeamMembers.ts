@@ -18,21 +18,22 @@ CREATE TABLE "public"."team_members" (
 );
 */
 
-type TeamMemberCategory = 'Executive Board' | 'System Leads' | 'Advisors' | 'Alumni' | 'Members';
+type TeamMemberCategory =
+    | "Executive Board"
+    | "System Leads"
+    | "Advisors"
+    | "Alumni"
+    | "Members";
 
 interface TeamMember {
-  [x: string]: any;
-  id: number;
-  name: string;
-  role: string;
-  email: string;
-  photoPath: string;
-  category: TeamMemberCategory;
-  createdAt: Date;
-  updatedAt: Date;
+    id: number;
+    name: string;
+    role: string;
+    email: string;
+    photo_path: string;
+    category: TeamMemberCategory;
+    created_at: Date;
+    updated_at: Date;
 }
 
-export type {
-  TeamMemberCategory,
-  TeamMember,
-};
+export type { TeamMemberCategory, TeamMember };

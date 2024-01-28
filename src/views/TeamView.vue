@@ -30,11 +30,12 @@
           data-aos-duration="1000"
         >
           <h2
-            class="text-2xl font-bold mb-4"
             v-if="
-              teamMembersData.filter((member) => member.category === category)
-                .length > 0
+              teamMembersData.filter(
+                (member) => member.category === category,
+              ).length > 0
             "
+            class="text-2xl font-bold mb-4"
           >
             {{ category }}
           </h2>
@@ -57,62 +58,58 @@
 </template>
 
 <script async setup lang="ts">
-import { onMounted, ref, type Ref } from 'vue';
-import TeamMemberCard from '../components/TeamMemberCard.vue';
+import { onMounted, ref, type Ref } from "vue";
+import TeamMemberCard from "@/components/TeamMemberCard.vue";
 import {
-  type TeamMember,
-  type TeamMemberCategory,
-} from '../types/TeamMembers.ts';
-import makeBackendAPIRequest from '../services/axios.ts';
+    type TeamMember,
+    type TeamMemberCategory,
+} from "@/types/TeamMembers";
+import makeBackendAPIRequest from "@/services/axios";
 
 const teamMembersData: Ref<TeamMember[]> = ref([]);
 const teamMemberCategories: TeamMemberCategory[] = [
-  'Executive Board',
-  'System Leads',
-  'Advisors',
-  'Alumni',
-  'Members',
+    "Executive Board",
+    "System Leads",
+    "Advisors",
+    "Alumni",
+    "Members",
 ];
 
 const fetchTeamMembers = () => {
-  makeBackendAPIRequest<TeamMember[]>('/team-members')
-    .then((response) => {
-      // Map the response data to the teamMembersData ref
-      response.data.map((member) => {
-        teamMembersData.value.push({
-          id: member.id,
-          name: member.name,
-          role: member.role,
-          email: member.email,
-          photoPath: import.meta.env.VITE_APP_BACKEND_URL + member.photo_path,
-          category: member.category,
-          createdAt: new Date(member.created_at),
-          updatedAt: new Date(member.updated_at),
+    makeBackendAPIRequest<TeamMember[]>("/team-members")
+        .then((response) => {
+            // Map the response data to the teamMembersData ref
+            response.data.map((member) => {
+                teamMembersData.value.push({
+                    ...member,
+                    photo_path: import.meta.env.VITE_APP_BACKEND_URL + member.photo_path,
+                    created_at: new Date(member.created_at),
+                    updated_at: new Date(member.updated_at),
+                });
+            });
+        })
+        .catch((error) => {
+            console.error(error);
         });
-      });
-    })
-    .catch((error) => {
-      console.error(error);
-    });
 };
 
-const headerHeight = ref(0); // Ref to store the height of the UniversalHeader
+const headerHeight = ref(0);
 
 onMounted(() => {
-  // Calculate the height of the UniversalHeader
-  const header = document.querySelector('header'); // Assuming your UniversalHeader has a <header> tag or you need to adjust the selector based on your actual header element
-  if (header) {
-    headerHeight.value = header.offsetHeight; // Get the outer height of the header
-  }
-  fetchTeamMembers();
+    // Calculate the height of the UniversalHeader
+    const header = document.querySelector("header"); // Assuming your UniversalHeader has a <header> tag or you need to adjust the selector based on your actual header element
+    if (header) {
+        headerHeight.value = header.offsetHeight; // Get the outer height of the header
+    }
+    fetchTeamMembers();
 });
 </script>
 
 <style scoped>
 .text-gradient {
-  background: linear-gradient(to right, #d63030, #942020);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
+    background: linear-gradient(to right, #d63030, #942020);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
 }
 </style>

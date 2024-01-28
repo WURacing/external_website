@@ -6,9 +6,9 @@ interface Pagination<T> {
     last_page: number;
     last_page_url: string;
     links: {
-      url: string | null;
-      label: string;
-      active: boolean;
+        url: string | null;
+        label: string;
+        active: boolean;
     }[];
     next_page_url: string | null;
     path: string;
@@ -16,7 +16,7 @@ interface Pagination<T> {
     prev_page_url: string | null;
     to: number | null;
     total: number;
-  }
+}
 
 export type { Pagination };
 export type { Pagination as DefaultPagination };

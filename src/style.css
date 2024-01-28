@@ -3,35 +3,40 @@
 @tailwind utilities;
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 
-  /* Optimize for legibility */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    /* Optimize for legibility */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
-  /* Optimize for legibility at small sizes */
-  text-rendering: optimizeLegibility;
+    /* Optimize for legibility at small sizes */
+    text-rendering: optimizeLegibility;
 }
 
 body {
-  @apply bg-stone-900;
+    @apply bg-stone-900;
 }
 
 ::selection {
-  @apply bg-red-500 bg-opacity-50;
+    @apply bg-red-500 bg-opacity-50;
 }
 
 a:hover {
-  @apply underline;
+    @apply underline;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  @apply font-extrabold font-display italic;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    @apply font-extrabold font-display italic;
 }
 
 .text-gradient {
-  background: linear-gradient(to right, #d63030, #942020);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
+    background: linear-gradient(to right, #d63030, #942020);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
 }

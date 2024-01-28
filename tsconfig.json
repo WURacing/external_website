@@ -1,15 +1,21 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
+    "files": [],
+    "references": [
+        {
+            "path": "./tsconfig.node.json",
+        },
+        {
+            "path": "./tsconfig.app.json",
+        },
+    ],
+    "compilerOptions": {
+        "target": "ESNext",
+        "types": ["node", "vite/client"],
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "baseUrl": "./",
+        "strict": false,
+        "noEmit": true,
+        "allowImportingTsExtensions": true,
     },
-    {
-      "path": "./tsconfig.app.json"
-    }
-  ],
-  "compilerOptions": {
-    "moduleResolution": "Node",
-    "baseUrl": "./",
-  }
 }

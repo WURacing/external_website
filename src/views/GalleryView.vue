@@ -36,27 +36,26 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue';
-import AOS from 'aos';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useRoute } from 'vue-router';
+import { ref, onMounted } from "vue";
+import AOS from "aos";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const headerHeight = ref(0);
 
 onMounted(() => {
-  gsap.registerPlugin(ScrollTrigger);
-  AOS.init();
+    gsap.registerPlugin(ScrollTrigger);
+    AOS.init();
 
-  // Calculate the header's height and observe changes
-  const header = document.querySelector('header');
-  if (header) {
-    const updateHeaderHeight = () => {
-      headerHeight.value = header.offsetHeight;
-    };
+    // Calculate the header's height and observe changes
+    const header = document.querySelector("header");
+    if (header) {
+        const updateHeaderHeight = () => {
+            headerHeight.value = header.offsetHeight;
+        };
 
-    updateHeaderHeight();
-    new ResizeObserver(updateHeaderHeight).observe(header);
-  }
+        updateHeaderHeight();
+        new ResizeObserver(updateHeaderHeight).observe(header);
+    }
 });
 </script>

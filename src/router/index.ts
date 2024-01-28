@@ -16,7 +16,7 @@ const router = createRouter({
         {
             path: "/gallery",
             name: "gallery",
-            component: () => import("../views/GalleryView.vue"),
+            component: () => import("@/views/GalleryView.vue"),
             meta: {
                 title: "Gallery",
                 hideInFooter: false,
@@ -24,17 +24,26 @@ const router = createRouter({
         },
         {
             path: "/history",
+            name: "histories",
+            component: () => import("@/views/HistoriesView.vue"),
+            meta: {
+                title: "Histories",
+                hideInFooter: false,
+            },
+        },
+        {
+            path: "/history/:id",
             name: "history",
-            component: () => import("../views/HistoryView.vue"),
+            component: () => import("@/views/HistoryView.vue"),
             meta: {
                 title: "History",
-                hideInFooter: false,
+                hideInFooter: true,
             },
         },
         {
             path: "/team",
             name: "team",
-            component: () => import("../views/TeamView.vue"),
+            component: () => import("@/views/TeamView.vue"),
             meta: {
                 title: "Team",
                 hideInFooter: false,
@@ -43,7 +52,7 @@ const router = createRouter({
         {
             path: "/sponsors",
             name: "sponsors",
-            component: () => import("../views/SponsorsView.vue"),
+            component: () => import("@/views/SponsorsView.vue"),
             meta: {
                 title: "Sponsors",
                 hideInFooter: false,

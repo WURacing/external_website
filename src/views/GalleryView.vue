@@ -24,7 +24,7 @@
       <div class="mt-8 w-full h-fit max-w-7xl">
         <iframe
           src="https://snapwidget.com/embed/1029559"
-          class="snapwidget-widget border-none w-full h-full visible"
+          class="border-none w-full h-max visible"
           allowtransparency="true"
           frameborder="0"
           scrolling="no"

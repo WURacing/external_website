@@ -40,7 +40,7 @@ import TierBadge from "@/components/TierBadge.vue";
 
 // type SponsorTier = 'Diamond' | 'Platinum' | 'Gold' | 'Silver' | 'Bronze';
 
-defineProps<{ sponsor: Sponsor, tier: SponsorTier }>();
+defineProps<{ sponsor: Sponsor }>();
 
 const tierSizeClass = (tier: SponsorTier) => {
     switch (tier) {

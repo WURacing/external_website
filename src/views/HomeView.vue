@@ -6,7 +6,7 @@
     cta-link="/team"
   >
     <template #announcement>
-      <b>{{ countdown }}</b> Until Comp!
+      <b>{{ countdown }}</b> Until FSAE Michigan 2025!
     </template>
 
     <template #announcement-link>

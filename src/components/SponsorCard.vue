@@ -1,7 +1,7 @@
 <template>
   <!-- In grid -->
   <a
-    class="sponsor-card relative h-full w-full rounded-lg overflow-hidden shadow-lg transition-transform hover:shadow-2xl bg-stone-800 group"
+    class="sponsor-card relative h-auto w-full rounded-lg aspect-w-1 aspect-h-1 overflow-hidden shadow-lg transition-transform hover:shadow-2xl bg-stone-400 group"
     :class="tierSizeClass(sponsor.tier)"
     :href="sponsor.link"
     target="_blank"
@@ -11,20 +11,19 @@
     @focusin="animateCard"
     @focusout="resetCardAnimation"
   >
+    <br>
     <!-- Sponsor image -->
-    <div class="h-auto w-full aspect-w-1 aspect-h-1 overflow-hidden">
+    <div
+      class="w-full flex justify-center items-center overflow-hidden"
+    >
       <img
         :src="sponsor.image_path || 'https://placehold.co/600x400'"
         :alt="sponsor.name + ' logo'"
-        class="object-cover h-full w-full"
+        class="object-center h-auto w-full"
       >
     </div>
-
     <!-- Sponsor Info -->
-    <div class="p-4 text-center">
-      <h3 class="text-xl font-bold text-stone-100 mb-2">
-        {{ sponsor.name }}
-      </h3>
+    <div class="p-4 pt-6 w-full items-center justify-end">
 
       <!-- Sponsor Tier Badge -->
       <TierBadge :tier="sponsor.tier" />
@@ -41,7 +40,7 @@ import TierBadge from "@/components/TierBadge.vue";
 
 // type SponsorTier = 'Diamond' | 'Platinum' | 'Gold' | 'Silver' | 'Bronze';
 
-defineProps<{ sponsor: Sponsor }>();
+defineProps<{ sponsor: Sponsor, tier: SponsorTier }>();
 
 const tierSizeClass = (tier: SponsorTier) => {
     switch (tier) {
@@ -51,9 +50,9 @@ const tierSizeClass = (tier: SponsorTier) => {
         case "Diamond":
         case "Platinum":
         case "Gold":
-            return "col-span-2 row-span-2";
-        case "Silver":
             return "col-span-2 row-span-1";
+        case "Silver":
+            return "col-span-1 row-span-1";
         case "Bronze":
             return "col-span-1 row-span-1";
         default:
@@ -98,6 +97,6 @@ const resetCardAnimation = (event: Event) => {
 <style>
 .sponsor-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 </style>

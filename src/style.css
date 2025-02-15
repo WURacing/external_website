@@ -40,3 +40,9 @@ h6 {
     -webkit-background-clip: text;
     color: transparent;
 }
+.text-gradient-light {
+    background: linear-gradient(to right, hsl(0, 67%, 85%), hsl(0, 64%, 60%));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}

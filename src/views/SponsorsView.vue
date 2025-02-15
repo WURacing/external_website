@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative min-h-screen isolate overflow-hidden flex flex-col items-center bg-stone-900 text-stone-100"
+    class="relative min-h-screen isolate overflow-hidden flex flex-col items-center bg-rose-950 text-stone-900"
     :style="{ paddingTop: headerHeight + 'px' }"
   >
     <div class="flex flex-col items-center w-full px-8 pb-8 max-w-7xl">
@@ -11,7 +11,7 @@
         data-aos-duration="1000"
       >
         <h1
-          class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gradient mb-4"
+          class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gradient-light mb-4"
         >
           MEET OUR SPONSORS
         </h1>
@@ -34,7 +34,7 @@
       <!-- Sponsor card grid -->
       <div class="mt-8 w-full max-w-7xl">
         <div
-          class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 xl:grid-cols-16 gap-4 mt-8 mx-auto"
+          class="grid md:grid-cols-2 lg:grid-cols-6 items-center gap-8 mt-4 mx-auto justify-center"
           data-aos="fade-up"
           data-aos-duration="1000"
         >

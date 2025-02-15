@@ -1,5 +1,5 @@
+[![Laravel Forge Site Deployment Status](https://img.shields.io/endpoint?url=https%3A%2F%2Fforge.laravel.com%2Fsite-badges%2F6f61dc2d-e7e9-4460-9348-8e42b4749ae7%3Fdate%3D1&style=for-the-badge)](https://forge.laravel.com/servers/754694/sites/2230963)
 # app
-
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup

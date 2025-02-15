@@ -12,7 +12,7 @@
     >
       <div class="flex lg:flex-1">
         <a
-          href="#"
+          href="/"
           class="-m-1.5 p-1.5"
         >
           <span class="sr-only"> WashU Racing </span>

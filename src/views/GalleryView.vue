@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative min-h-screen isolate overflow-hidden flex flex-col items-center bg-stone-900 text-stone-100"
+    class="relative min-h-screen isolate flex flex-col items-center bg-stone-900 text-stone-100"
     :style="{ paddingTop: headerHeight + 'px' }"
   >
     <div class="flex flex-col items-center w-full px-8 pb-8 max-w-7xl">
@@ -21,12 +21,14 @@
       </div>
 
       <!-- SnapWidget -->
-      <div class="mt-8 w-full h-fit max-w-7xl">
+      <div
+        class=" w-full"
+        style="height: 3500px;"
+      >
         <iframe
           src="https://snapwidget.com/embed/1029559"
-          class="border-none w-full h-max visible"
+          class="border-none w-full h-full"
           allowtransparency="true"
-          frameborder="0"
           scrolling="no"
           title="Instagram Widget"
         />

@@ -52,9 +52,9 @@ const tierSizeClass = (tier: SponsorTier) => {
         case "Gold":
             return "col-span-2 row-span-1";
         case "Silver":
-            return "col-span-1 row-span-1";
+            return "col-span-2 row-span-1";
         case "Bronze":
-            return "col-span-1 row-span-1";
+            return "col-span-2 row-span-1";
         default:
             return "";
     }

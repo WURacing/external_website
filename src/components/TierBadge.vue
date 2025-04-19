@@ -1,6 +1,6 @@
 <template>
   <span
-    class="inline-block py-1 px-3 text-sm font-semibold rounded-full text-stone-100"
+    class="inline-block py-1 px-3 text-xs sm:text-xs md:text-sm lg:text-lg font-semibold rounded-full text-stone-100"
     :class="tierGradient"
   >
     {{ tier }}

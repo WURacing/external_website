@@ -34,7 +34,7 @@
       <!-- Sponsor card grid -->
       <div class="mt-8 w-full max-w-7xl">
         <div
-          class="grid md:grid-cols-2 lg:grid-cols-6 items-center gap-8 mt-4 mx-auto justify-center"
+          class="grid grid-cols-6 items-center gap-8 mt-4 mx-auto justify-center"
           data-aos="fade-up"
           data-aos-duration="1000"
         >
@@ -111,7 +111,7 @@ const sponsorsData: Ref<Pagination<Sponsor>> = ref({
     links: [],
     next_page_url: null,
     path: "",
-    per_page: 15,
+    per_page: 12,
     prev_page_url: null,
     to: null,
     total: 0,

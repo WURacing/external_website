@@ -177,7 +177,7 @@ import UniversalHero from "@/components/UniversalHero.vue";
 // Time till May 14-18, 2025 | Formula SAE Michigan, Brooklyn, MI
 // Dynamically updating countdown timer
 const countdown = ref("");
-const countDownDate = new Date("May 14, 2025 00:00:00").getTime();
+const countDownDate = new Date("May 14, 2026 00:00:00").getTime();
 const x = setInterval(() => {
     const now = new Date().getTime();
     const distance = countDownDate - now;

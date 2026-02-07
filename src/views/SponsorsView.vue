@@ -85,7 +85,7 @@
 import { onMounted, ref, type Ref } from "vue";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import type { AxiosResponse } from "axios";
-import PDF from "@/assets/sponsorship_packet2024.pdf";
+import PDF from "@/assets/sponsorship_packet2026.pdf";
 import SponsorCard from "@/components/SponsorCard.vue";
 import SponsorshipModal from "@/components/SponsorshipModal.vue";
 import { type Sponsor } from "@/types/Sponsors";
